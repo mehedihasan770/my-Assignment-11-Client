@@ -48,7 +48,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <li><NavLink>SignIn</NavLink></li>
+          <li className="list-none"><NavLink to={'/auth/signin'} className="navBTN">SignIn</NavLink></li>
         </div>
       </div>
     </div>

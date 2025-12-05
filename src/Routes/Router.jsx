@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home";
 import AllContests from "../Pages/AllContests";
+import Signin from "../Pages/Signin";
+import Signup from "../Pages/Signup";
+import AuthLayout from "../Layouts/AuthLayout";
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +18,20 @@ export const router = createBrowserRouter([
             {
                 path: 'all-contests',
                 Component: AllContests,
+            },
+        ]
+    },
+    {
+        path: 'auth',
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'signin',
+                Component: Signin,
+            },
+            {
+                path: 'signup',
+                Component: Signup,
             },
         ]
     }

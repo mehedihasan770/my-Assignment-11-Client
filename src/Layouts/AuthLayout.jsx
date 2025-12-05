@@ -1,6 +1,8 @@
 import React from 'react';
+import Navbar from '../Components/Navbar/Navbar';
+import { Outlet } from 'react-router';
 
-const Auth = () => {
+const AuthLayout = () => {
     return (
         <div className='max-w-10/12 mx-auto'>
             <header><Navbar/></header>
@@ -12,4 +14,4 @@ const Auth = () => {
     );
 };
 
-export default Auth;
+export default AuthLayout;
