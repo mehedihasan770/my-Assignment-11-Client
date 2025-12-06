@@ -52,7 +52,7 @@ const Signup = () => {
       setLoading(false);
     } catch (error) {
       if (error.response?.status === 409) {
-        toast.success("Signed in with Google successfully!");
+        toast.success("Signed Up with Google successfully!");
         navigate('/');
       } else {
         toast.error(`${error.message}`);

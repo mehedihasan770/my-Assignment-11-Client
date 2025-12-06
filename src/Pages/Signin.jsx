@@ -5,8 +5,11 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { useAuth } from "../Hooks/Auth";
 import toast from "react-hot-toast";
+import { auth } from "../FirebaseConfig/Firebase";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Signin = () => {
+  const axiosSecure = useAxiosSecure()
   const { signInWithEP, signInWithGG, setLoading } = useAuth()
   const [showPassword, setShowPassword] = useState(false);
   const {register, handleSubmit, reset} = useForm()
@@ -14,22 +17,43 @@ const Signin = () => {
     const {email, password} = data;
     try {
       await signInWithEP(email, password);
+      const user = auth.currentUser;
+      const userInfo = {
+        name: user.displayName,
+        email,
+        image: user.photoURL,
+      };
+      await axiosSecure.post('/users', userInfo);
       toast.success("Signed in successfully!");
       setLoading(false);
       reset()
     } catch (error) {
-      toast.error(`Sign in failed: ${error.message}`);
+      if (error.response?.status === 409) {
+        toast.success("Signed in with Google successfully!");
+      } else {
+        toast.error(`${error.message}`);
+      }
       setLoading(false);
     }
   }
   const handleSignInGG =async () => {
     try {
       await signInWithGG();
+      const user = auth.currentUser;
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+      };
+      await axiosSecure.post('/users', userInfo);
       toast.success("Signed in with Google successfully!");
       setLoading(false);
     } catch (error) {
-      console.error(error);
-      toast.error(`Google Sign-In failed: ${error.message}`);
+      if (error.response?.status === 409) {
+        toast.success("Signed in with Google successfully!");
+      } else {
+        toast.error(`${error.message}`);
+      }
       setLoading(false);
     }
   }
