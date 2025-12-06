@@ -8,13 +8,24 @@ import { ImProfile } from "react-icons/im";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
 import Loader from "../Loading/Loader";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, loading } = useAuth()
+  const { user, loading, signOutUser } = useAuth()
   const links = <>
     <li><NavLink to={'/'} className="navBTN"><BiHome />Home</NavLink></li>
     <li><NavLink to={'/all-contests'} className="navBTN"><PiLayoutFill />All Contests</NavLink></li>
   </>
+
+  const handleSignOut =async () => {
+    try {
+    await signOutUser();
+      toast.success("Signed out successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error(`Sign out failed: ${error.message}`);
+    }
+  }
 
   return (
     <div>
@@ -56,13 +67,13 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {loading ? <Loader/> : user ? (
+          {loading ? <div className="loader h-10"></div> : user ? (
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="btn m-1 w-12 h-12 rounded-full" /></div>
+            <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="m-1 cursor-pointer w-12 h-12 rounded-full" /></div>
             <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm">
               <li><NavLink className="navBTN"><ImProfile /> Profile</NavLink></li>
               <li><NavLink className="navBTN"><MdDashboard /> Dashboard</NavLink></li>
-              <li><button className="navBTN"><GoSignOut /> Sign Out</button></li>
+              <li><button onClick={handleSignOut} className="navBTN"><GoSignOut /> Sign Out</button></li>
             </ul>
           </div>) : (
             <>
