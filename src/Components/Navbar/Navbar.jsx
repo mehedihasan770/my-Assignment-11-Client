@@ -2,13 +2,18 @@ import React from "react";
 import { FaTrophy } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { useAuth } from "../../Hooks/Auth";
+import button from "daisyui/components/button";
+import { GoSignOut } from "react-icons/go";
+import { MdDashboard } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
+import { BiHome } from "react-icons/bi";
+import { PiLayoutFill } from "react-icons/pi";
 
 const Navbar = () => {
-  const {name} = useAuth()
-  console.log(name)
+  const { user, loading } = useAuth()
   const links = <>
-    <li><NavLink to={'/'} className="navBTN">Home</NavLink></li>
-    <li><NavLink to={'/all-contests'} className="navBTN">All Contests</NavLink></li>
+    <li><NavLink to={'/'} className="navBTN"><BiHome />Home</NavLink></li>
+    <li><NavLink to={'/all-contests'} className="navBTN"><PiLayoutFill />All Contests</NavLink></li>
   </>
 
   return (
@@ -51,8 +56,20 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <li className="list-none"><NavLink to={'/auth/signin'} className="navBTN">Sign In</NavLink></li>
-          <li className="list-none hidden md:block"><NavLink to={'/auth/signup'} className="navBTN">Sign Up</NavLink></li>
+          {user ? (
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="btn m-1 w-12 h-12 rounded-full" /></div>
+            <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm">
+              <li><NavLink className="navBTN"><ImProfile /> Profile</NavLink></li>
+              <li><NavLink className="navBTN"><MdDashboard /> Dashboard</NavLink></li>
+              <li><button className="navBTN"><GoSignOut /> Sign Out</button></li>
+            </ul>
+          </div>) : (
+            <>
+              <li className="list-none"><NavLink to={'/auth/signin'} className="navBTN">Sign In</NavLink></li>
+              <li className="list-none hidden md:block"><NavLink to={'/auth/signup'} className="navBTN">Sign Up</NavLink></li>
+            </>
+          )}
         </div>
       </div>
     </div>
