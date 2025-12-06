@@ -3,14 +3,37 @@ import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { useAuth } from "../Hooks/Auth";
+import toast from "react-hot-toast";
 
 const Signin = () => {
+  const { signInWithEP, signInWithGG, setLoading } = useAuth()
   const [showPassword, setShowPassword] = useState(false);
-  const {register, handleSubmit, formState: {errors}} = useForm()
-  const handleSignIn = data => {
+  const {register, handleSubmit, reset} = useForm()
+  const handleSignIn =async data => {
     const {email, password} = data;
-    console.log({email, password})
+    try {
+      await signInWithEP(email, password);
+      toast.success("Signed in successfully!");
+      setLoading(false);
+      reset()
+    } catch (error) {
+      toast.error(`Sign in failed: ${error.message}`);
+      setLoading(false);
+    }
   }
+  const handleSignInGG =async () => {
+    try {
+      await signInWithGG();
+      toast.success("Signed in with Google successfully!");
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      toast.error(`Google Sign-In failed: ${error.message}`);
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="min-h-screen flex justify-center items-center mt-5 mb-5">
       <form onSubmit={handleSubmit(handleSignIn)} className="space-y-5 bg-secondary dark:bg-[#261B25] p-5 w-full max-w-sm rounded-2xl mx-auto">
@@ -46,7 +69,7 @@ const Signin = () => {
           <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700"></div>
         </div>
 
-        <button type="button" className="btn w-full border border-primary py-2 rounded-xl flex items-center justify-center gap-2 dark:border-gray-600"><FcGoogle size={30} />Sign In With Google</button>
+        <button onClick={handleSignInGG} type="button" className="btn w-full border border-primary py-2 rounded-xl flex items-center justify-center gap-2 dark:border-gray-600"><FcGoogle size={30} />Sign In With Google</button>
         <p className="text-sm dark:text-gray-300">Don’t have an account?<Link to={'/auth/signup'} className="text-primary cursor-pointer hover:underline">{" "}Sign Up</Link></p>
       </form>
     </div>

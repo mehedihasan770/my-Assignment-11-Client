@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {register, handleSubmit, formState: {errors}} = useForm()
+  const {register, handleSubmit, formState: {errors}, reset } = useForm()
   const { signUpWithEP, signInWithGG, setLoading, updateUserPF } = useAuth()
   const navigate = useNavigate()
   const handleSignUp =async data => {
@@ -19,6 +19,7 @@ const Signup = () => {
       toast.success("Signup successful!");
       navigate('/')
       setLoading(false);
+      reset()
     } catch (error) {
       console.error(error);
       toast.error(`Signup failed: ${error.message}`);

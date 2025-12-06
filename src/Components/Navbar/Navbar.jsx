@@ -7,7 +7,6 @@ import { MdDashboard } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
-import Loader from "../Loading/Loader";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
