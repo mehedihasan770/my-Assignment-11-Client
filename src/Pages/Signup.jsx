@@ -61,7 +61,7 @@ const Signup = () => {
           {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password.message}</p>)}
         </div>
 
-        <button type="submit" className="customBTN">Sign In</button>
+        <button type="submit" className="customBTN">Sign Up</button>
 
         <div className="flex items-center gap-3">
           <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700"></div>

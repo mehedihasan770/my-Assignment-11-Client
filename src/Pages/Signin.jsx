@@ -1,19 +1,26 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const {register, handleSubmit, formState: {errors}} = useForm()
+  const handleSignIn = data => {
+    const {email, password} = data;
+    console.log({email, password})
+  }
   return (
     <div className="min-h-screen flex justify-center items-center mt-5 mb-5">
-      <form className="space-y-5 bg-secondary dark:bg-[#261B25] p-5 w-full max-w-sm rounded-2xl mx-auto">
+      <form onSubmit={handleSubmit(handleSignIn)} className="space-y-5 bg-secondary dark:bg-[#261B25] p-5 w-full max-w-sm rounded-2xl mx-auto">
         <h2 className="text-2xl font-bold text-center mb-4 text-primary">Welcome Back</h2>
 
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium dark:text-gray-200">Email</label>
           <input
             type="email"
+            {...register("email", {required: "Email is required",})}
             placeholder="Enter your email"
             className="border border-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-2 dark:bg-gray-800 dark:text-white"
           />
@@ -23,6 +30,7 @@ const Signin = () => {
           <label className="text-sm font-medium dark:text-gray-200">Password</label>
           <input
             type={showPassword ? "text" : "password"}
+            {...register("password", {required: "Password is required",})}
             placeholder="Enter your password"
             className="border border-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-2 dark:bg-gray-800 dark:text-white"
           />
