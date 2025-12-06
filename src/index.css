@@ -8,7 +8,7 @@
 }
 
 .customBTN{
-    @apply btn border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white rounded-2xl
+    @apply btn border-2 border-primary font-bold bg-primary w-full text-white rounded-2xl
 }
 .navBTN{
     @apply btn font-bold hover:bg-primary hover:text-white ml-1 rounded-2xl
