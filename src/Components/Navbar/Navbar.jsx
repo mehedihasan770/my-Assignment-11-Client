@@ -68,7 +68,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {loading ? <div className="loader h-10"></div> : user ? (
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="m-1 cursor-pointer w-12 h-12 rounded-full" /></div>
+            <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="m-1 cursor-pointer w-10 h-10 rounded-full" /></div>
             <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm">
               <li><NavLink className="navBTN"><ImProfile /> Profile</NavLink></li>
               <li><NavLink className="navBTN"><MdDashboard /> Dashboard</NavLink></li>

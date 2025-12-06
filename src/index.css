@@ -31,7 +31,7 @@ li .active{
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(#0000 0 5%, #C02942, #0000 20% 50%);
+  background: repeating-conic-gradient(#0000 0 5%, #FF6D00, #0000 100% 100%);
   animation: l2 1.5s linear infinite;
 }
 

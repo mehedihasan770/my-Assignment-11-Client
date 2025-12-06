@@ -5,8 +5,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../Hooks/Auth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Signup = () => {
+  const axiosSecure = useAxiosSecure()
   const [showPassword, setShowPassword] = useState(false);
   const {register, handleSubmit, formState: {errors}, reset } = useForm()
   const { signUpWithEP, signInWithGG, setLoading, updateUserPF } = useAuth()
@@ -14,8 +16,15 @@ const Signup = () => {
   const handleSignUp =async data => {
     const {email, password, name, imageURL} = data;
     try {
+      const userInfo = {
+        name,
+        email,
+        image: imageURL,
+      };
       await signUpWithEP(email, password);
       await updateUserPF(name, imageURL);
+      const res = await axiosSecure.post('/users', userInfo);
+      console.log(res.data)
       toast.success("Signup successful!");
       navigate('/')
       setLoading(false);
