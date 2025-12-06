@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 
 const Signup = () => {
+  const {  }
   const [showPassword, setShowPassword] = useState(false);
   const {register, handleSubmit, formState: {errors}} = useForm()
   const handleSignUp = data => {

@@ -2,12 +2,12 @@ import React from "react";
 import { FaTrophy } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { useAuth } from "../../Hooks/Auth";
-import button from "daisyui/components/button";
 import { GoSignOut } from "react-icons/go";
 import { MdDashboard } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
+import Loader from "../Loading/Loader";
 
 const Navbar = () => {
   const { user, loading } = useAuth()
@@ -56,7 +56,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user ? (
+          {loading ? <Loader/> : user ? (
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button"><img src={user?.photoURL} alt="USR"  className="btn m-1 w-12 h-12 rounded-full" /></div>
             <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm">
