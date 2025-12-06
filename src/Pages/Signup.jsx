@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "../Hooks/Auth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { auth } from "../FirebaseConfig/Firebase";
 
 const Signup = () => {
   const axiosSecure = useAxiosSecure()
@@ -39,12 +40,23 @@ const Signup = () => {
   const handleSignUpGG =async () => {
     try {
       await signInWithGG();
+      const user = auth.currentUser;
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+      };
+      await axiosSecure.post('/users', userInfo);
       toast.success("Signed in with Google successfully!");
       navigate('/')
       setLoading(false);
     } catch (error) {
-      console.error(error);
-      toast.error(`Google Sign-In failed: ${error.message}`);
+      if (error.response?.status === 409) {
+        toast.success("Signed in with Google successfully!");
+        navigate('/');
+      } else {
+        toast.error(`${error.message}`);
+      }
       setLoading(false);
     }
   }
