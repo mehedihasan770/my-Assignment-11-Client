@@ -1,8 +1,11 @@
 import React from "react";
 import { FaTrophy } from "react-icons/fa";
 import { NavLink } from "react-router";
+import { useAuth } from "../../Hooks/Auth";
 
 const Navbar = () => {
+  const {name} = useAuth()
+  console.log(name)
   const links = <>
     <li><NavLink to={'/'} className="navBTN">Home</NavLink></li>
     <li><NavLink to={'/all-contests'} className="navBTN">All Contests</NavLink></li>
