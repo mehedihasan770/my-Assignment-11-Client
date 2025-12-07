@@ -5,6 +5,9 @@ import AllContests from "../Pages/AllContests";
 import Signin from "../Pages/Signin";
 import Signup from "../Pages/Signup";
 import AuthLayout from "../Layouts/AuthLayout";
+import Dashboard from "../Layouts/Dashboard";
+import ManageUsers from "../Pages/Dashboard/ManageUsers";
+import AdminRoutes from "./AdminRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +36,16 @@ export const router = createBrowserRouter([
                 path: 'signup',
                 Component: Signup,
             },
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'manage-users',
+                element: <AdminRoutes><ManageUsers/></AdminRoutes>
+            }
         ]
     }
 ])
