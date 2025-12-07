@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'manage-users',
-                element: <AdminRoutes><ManageUsers/></AdminRoutes>
+                element: <ManageUsers/>
             },
             {
                 path: 'create-contest',

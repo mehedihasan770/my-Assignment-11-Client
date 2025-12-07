@@ -14,7 +14,7 @@
     @apply btn font-bold hover:bg-primary hover:text-white ml-1 rounded-2xl
 }
 .dasBTN{
-    @apply font-bold hover:bg-primary hover:text-white rounded-2xl
+    @apply btn font-bold hover:bg-primary hover:text-white rounded-2xl text-left flex items-center justify-start
 }
 li .active{
     @apply bg-primary text-white

@@ -2,16 +2,47 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
+import { useAuth } from "../../Hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useDashboardRole from "../../Hooks/useDashboardRole";
 
 const AddContest = () => {
-  const { register, handleSubmit, reset } = useForm();
-  const [deadline, setDeadline] = useState(new Date());
+    const { user } = useAuth();
+    const  axiosSecure = useAxiosSecure();
+    const dashboardRole = useDashboardRole()
+    const { register, handleSubmit, reset } = useForm();
+    const [deadline, setDeadline] = useState(new Date());
 
-  const onSubmit = (data) => {
-    const contestInfo = { ...data, deadline };
-    console.log(contestInfo);
-    reset();
-  };
+    const onSubmit =async (data) => {
+        const {name, contestType, image, price, prizeMoney, description, taskInstruction} = data;
+        const contestInfo = {
+            name,
+            contestType,
+            image,
+            price: Number(price),
+            prizeMoney: Number(prizeMoney),
+            description,
+            taskInstruction,
+            deadline,
+            creator_email: user.email,
+            creator_name: user.displayName,
+            creator_img: user.photoURL,
+            created_at: new Date().toLocaleString()
+        };
+        try {
+        const res = await axiosSecure.post(`/contests/${user?.email}/${dashboardRole?.roleData?.role}`, contestInfo);
+
+        if (res.data.success) {
+            toast.success("Contest added successfully!");
+            reset();
+        } else {
+            toast.error("Failed to add contest!");
+        }
+        } catch (err) {
+            toast.error("Error: " + err.data.message);
+        }
+    };
 
   return (
     <div className="w-full px-2 md:px-6 py-8">

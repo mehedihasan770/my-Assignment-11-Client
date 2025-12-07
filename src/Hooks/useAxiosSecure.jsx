@@ -25,11 +25,6 @@ const useAxiosSecure = () => {
         return res;
       },
       (err) => {
-        const statusCode = err.status;
-        if (statusCode === 401 || statusCode === 403) {
-          signOutUser();
-          navigate("/auth/signin");
-        }
         return Promise.reject(err);
       }
     );
