@@ -14,7 +14,7 @@ import { FaEdit } from 'react-icons/fa';
 const Dashboard = () => {
     return (
         <div className='max-w-11/12 md:max-w-10/12 mx-auto'>
-          <header><Navbar></Navbar></header>
+          <header className="sticky top-3 lg:z-50"><Navbar></Navbar></header>
             <main className='bg-secondary mt-5 mb-5 rounded-2xl dark:bg-[#261B25]'>
                 <div className="drawer lg:drawer-open">
                   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -59,7 +59,7 @@ const Dashboard = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Created Contests">
+          <NavLink to={'/dashboard/created-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Created Contests">
             <MdOutlineAddTask className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Created Contests</span>
           </NavLink>

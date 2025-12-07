@@ -9,6 +9,7 @@ import Dashboard from "../Layouts/Dashboard";
 import ManageUsers from "../Pages/Dashboard/ManageUsers";
 import AdminRoutes from "./AdminRoutes";
 import AddContest from "../Pages/Dashboard/AddContest";
+import CreatedContests from "../Pages/Dashboard/CreatedContests";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             {
                 path: 'create-contest',
                 element: <AddContest></AddContest>
+            },
+            {
+                path: 'created-contests',
+                element: <CreatedContests></CreatedContests>
             },
         ]
     }

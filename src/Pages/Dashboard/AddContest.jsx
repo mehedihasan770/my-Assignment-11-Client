@@ -25,6 +25,8 @@ const AddContest = () => {
             description,
             taskInstruction,
             deadline,
+            status: 'pending',
+            submissionsTask: [],
             creator_email: user.email,
             creator_name: user.displayName,
             creator_img: user.photoURL,
@@ -54,7 +56,6 @@ const AddContest = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-secondary dark:bg-[#261B25] rounded-2xl shadow-lg p-6 md:p-10 space-y-6"
       >
-        {/* Name + Contest Type */}
         <div className="grid md:grid-cols-2 gap-4">
           <input
             {...register("name")}
@@ -74,7 +75,6 @@ const AddContest = () => {
           </select>
         </div>
 
-        {/* Image URL */}
         <input
           {...register("image")}
           placeholder="Image URL"
@@ -82,7 +82,6 @@ const AddContest = () => {
           className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
         />
 
-        {/* Price + Prize Money */}
         <div className="grid md:grid-cols-2 gap-4">
           <input
             type="number"
@@ -100,7 +99,6 @@ const AddContest = () => {
           />
         </div>
 
-        {/* Description */}
         <textarea
           {...register("description")}
           placeholder="Contest Description"
@@ -109,7 +107,6 @@ const AddContest = () => {
           className="w-full border border-primary rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
         />
 
-        {/* Task Instruction */}
         <textarea
           {...register("taskInstruction")}
           placeholder="Task Instruction"
@@ -118,7 +115,6 @@ const AddContest = () => {
           className="w-full border border-primary rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
         />
 
-        {/* Deadline */}
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium dark:text-gray-200">Deadline</label>
           <DatePicker
