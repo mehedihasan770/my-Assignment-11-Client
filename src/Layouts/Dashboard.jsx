@@ -14,7 +14,7 @@ import { FaEdit } from 'react-icons/fa';
 const Dashboard = () => {
     return (
         <div className='max-w-11/12 md:max-w-10/12 mx-auto'>
-          <header className="sticky top-3 lg:z-50"><Navbar></Navbar></header>
+          <header className="sticky top-3 z-50"><Navbar></Navbar></header>
             <main className='bg-secondary mt-5 mb-5 rounded-2xl dark:bg-[#261B25]'>
                 <div className="drawer lg:drawer-open">
                   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -27,7 +27,7 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-  <div className="drawer-side is-drawer-close:overflow-visible">
+  <div className="drawer-side z-51 lg:z-0 is-drawer-close:overflow-visible">
     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
     <div className="flex min-h-full flex-col bg-secondary dark:bg-[#1f1f1f] lg:rounded-l-2xl border-r-2 border-white items-start is-drawer-close:w-17 is-drawer-open:w-64">
       <ul className="menu w-full grow space-y-2">

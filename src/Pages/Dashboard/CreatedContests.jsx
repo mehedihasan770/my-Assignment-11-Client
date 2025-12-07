@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useAuth } from "../../Hooks/useAuth";
 import Loader from "../../Components/Loading/Loader";
+import { Link, Outlet } from "react-router";
 
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -88,12 +89,13 @@ const CreatedContests = () => {
                     </button>
                   </>
                 )}
-                <button
-                  onClick={() => handleViewSubmissions(contest._id)}
-                  className="btn font-bold bg-primary text-white rounded-2xl text-xs sm:text-sm"
+                <Link
+                    to={`/dashboard/submitted-tasks/${contest._id}`}
+                    onClick={() => handleViewSubmissions(contest._id)}
+                    className="btn font-bold bg-primary text-white rounded-2xl text-xs sm:text-sm"
                 >
-                  Submissions
-                </button>
+                    Submissions
+                </Link>
               </td>
             </tr>
           ))}
