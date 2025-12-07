@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
-import { useAuth } from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { auth } from "../FirebaseConfig/Firebase";
+import { useAuth } from "../Hooks/useAuth";
 
 const Signup = () => {
   const axiosSecure = useAxiosSecure();

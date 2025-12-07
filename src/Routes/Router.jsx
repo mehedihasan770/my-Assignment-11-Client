@@ -8,6 +8,7 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Dashboard from "../Layouts/Dashboard";
 import ManageUsers from "../Pages/Dashboard/ManageUsers";
 import AdminRoutes from "./AdminRoutes";
+import AddContest from "../Pages/Dashboard/AddContest";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +46,11 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 element: <AdminRoutes><ManageUsers/></AdminRoutes>
-            }
+            },
+            {
+                path: 'create-contest',
+                element: <AddContest></AddContest>
+            },
         ]
     }
 ])
