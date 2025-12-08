@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loader from '../../Components/Loading/Loader';
+import Swal from 'sweetalert2';
 
 const SubmittedTasks = () => {
     const axiosSecure = useAxiosSecure();
     const [modalData, setModalData] = useState({})
     const {id} = useParams()
-    const { data: tasks = {}, isLoading } = useQuery({
+    const { data: tasks = {}, isLoading, refetch } = useQuery({
         queryKey: ["contestsTask", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/contests/${id}/task`);
@@ -23,7 +24,24 @@ const SubmittedTasks = () => {
 
     const handleDeclareWinner =async (email, id) => {
         console.log(email, id)
-        await axiosSecure.patch(`/contests/${id}/${email}/winner`)
+        Swal.fire({
+          title: "Are you sure?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Conform Declare"
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await axiosSecure.patch(`/contests/${id}/${email}/winner`)
+            Swal.fire({
+              title: "Winner Declared",
+              text: "Your Winner has been Declared",
+              icon: "success"
+            });
+            refetch()
+          }
+        });
     }
 
     const hasWinner = tasks?.submissionsTask?.some(t => t.isWinner)
@@ -86,7 +104,7 @@ const SubmittedTasks = () => {
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />
         <div className="modal" role="dialog">
           <div className="modal-box space-y-3">
-            <h3 className="text-lg font-bold">{modalData.description}</h3>
+            <h3 className="text-lg font-bold">{modalData.title}</h3>
             <Link to={modalData.fileUrl} className='btn'>File URL</Link>
             <p>{modalData.description}</p>
             <div className="modal-action">
