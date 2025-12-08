@@ -20,7 +20,7 @@ const Signin = () => {
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
-        email,
+        email: user.email,
         image: user.photoURL,
       };
       await axiosSecure.post("/users", userInfo);

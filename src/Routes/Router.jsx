@@ -53,19 +53,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'create-contest',
-                element: <CreatorRoutes><AddContest></AddContest></CreatorRoutes>
+                element: <CreatorRoutes><AddContest/></CreatorRoutes>
             },
             {
                 path: 'created-contests',
-                element: <CreatorRoutes><CreatedContests></CreatedContests></CreatorRoutes>
+                element: <CreatorRoutes><CreatedContests/></CreatorRoutes>
             },
             {
                 path: 'submitted-tasks/:id',
-                element: <CreatorRoutes><SubmittedTasks></SubmittedTasks></CreatorRoutes>
+                element: <CreatorRoutes><SubmittedTasks/></CreatorRoutes>
             },
             {
                 path: 'edit-contest/:id',
-                element: <CreatorRoutes><EditContest></EditContest></CreatorRoutes>
+                element: <CreatorRoutes><EditContest/></CreatorRoutes>
             },
         ]
     }

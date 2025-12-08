@@ -55,6 +55,7 @@ const Dashboard = () => {
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Winning Contests</span>
           </NavLink>
         </li>
+
         {roleData?.role === 'creator' &&  <>
           <li>
           <NavLink to={'/dashboard/create-contest'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Create Contest">
@@ -69,8 +70,9 @@ const Dashboard = () => {
           </NavLink>
         </li>
         </>}
+        
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Users">
+          <NavLink to={'/dashboard/manage-users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Users">
             <GrUserManager className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Manage Users</span>
           </NavLink>
