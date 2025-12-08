@@ -4,12 +4,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../Components/Loading/Loader";
 import { Link } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: contests = [], isLoading } = useQuery({
+  const { data: contests = [], isLoading, refetch } = useQuery({
     queryKey: ["myCreatedContests", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/contests/${user.email}/creator`);
@@ -17,9 +19,37 @@ const CreatedContests = () => {
     },
   });
 
-  const handleDelete = (id) => {
-    
-  };
+
+
+
+const handleDeleteContest = async (id) => {
+  Swal.fire({
+    title: 'Are you sure?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        await axiosSecure.delete(`/contests/${id}/delete`);
+        Swal.fire({
+            title: "Contest deleted",
+            text: "Contest deleted successfully",
+            icon: "success"
+        });
+        refetch();
+      } catch (err) {
+        toast.error(err.message);
+      }
+    }
+  });
+};
+
+
+
+
   if (isLoading) return <Loader />;
 
   return (
@@ -73,7 +103,7 @@ const CreatedContests = () => {
                       Edit
                     </Link>
                     <button
-                      onClick={() => handleDelete(contest._id)}
+                      onClick={() => handleDeleteContest(contest._id)}
                       className="bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
                     >
                       Delete

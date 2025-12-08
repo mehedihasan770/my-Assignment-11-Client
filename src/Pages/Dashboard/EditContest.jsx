@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const EditContest = () => {
     const { id } = useParams()
     const  axiosSecure = useAxiosSecure();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const { data: contest = {}, isLoading, refetch } = useQuery({
         queryKey: ["contestsTask", id],
