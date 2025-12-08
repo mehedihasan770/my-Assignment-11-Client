@@ -33,14 +33,9 @@ const AddContest = () => {
             created_at: new Date().toLocaleString()
         };
         try {
-        const res = await axiosSecure.post(`/contests/${user?.email}/${dashboardRole?.roleData?.role}`, contestInfo);
-
-        if (res.data.success) {
-            toast.success("Contest added successfully!");
-            reset();
-        } else {
-            toast.error("Failed to add contest!");
-        }
+        await axiosSecure.post(`/contests/${user?.email}/${dashboardRole?.roleData?.role}`, contestInfo);
+          toast.success("Contest added successfully!");
+          reset();
         } catch (err) {
             toast.error("Error: " + err.data.message);
         }

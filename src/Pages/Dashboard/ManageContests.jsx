@@ -1,26 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import Loader from "../../Components/Loading/Loader";
-import { Link } from "react-router";
-import { useAuth } from "../../hooks/useAuth";
-import Swal from "sweetalert2";
-import toast from "react-hot-toast";
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import Loader from '../../Components/Loading/Loader';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useAuth } from '../../hooks/useAuth';
+import { Link } from 'react-router';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
-const CreatedContests = () => {
-  const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
-
-  const { data: contests = [], isLoading, refetch } = useQuery({
-    queryKey: ["myCreatedContests", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/contests/${user.email}/creator`);
-      return res.data;
-    },
-  });
-
-
-
+const ManageContests = () => {
+    const {user} = useAuth()
+    const axiosSecure = useAxiosSecure()
+    const { data: contests = [], isLoading, refetch } = useQuery({
+        queryKey: ["myCreatedContests", user?.email],
+        queryFn: async () => {
+        const res = await axiosSecure.get('/contest/pending');
+        return res.data;
+        },
+    });
 
 const handleDeleteContest = async (id) => {
   Swal.fire({
@@ -47,10 +43,29 @@ const handleDeleteContest = async (id) => {
   });
 };
 
+    const handleManageContest = async (id, status) => {
+        
+        Swal.fire({
+          title: "Are you sure?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: `${status}`
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await axiosSecure.patch(`/contest/${id}/admin`, {status : status})
+            Swal.fire({
+              title: `${status} Successful`,
+              text: `${status} Successful`,
+              icon: "success"
+            });
+            refetch()
+          }
+        });
+    }
 
-
-
-  if (isLoading) return <Loader />;
+    if(isLoading) return <Loader></Loader>
 
   return (
     <div className="shadow-md md:px-6 py-8 rounded-2xl">
@@ -94,14 +109,13 @@ const handleDeleteContest = async (id) => {
                 </span>
               </td>
               <td className="px-4 py-2 flex gap-1 sm:gap-2">
-                {contest.status === "pending" && (
                   <>
-                    <Link
-                      to={`/dashboard/edit-contest/${contest._id}`}
+                    <button
+                      onClick={() => handleManageContest(contest._id, 'confirmed')}
                       className="bg-green-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
                     >
-                      Edit
-                    </Link>
+                      Confirm
+                    </button>
                     <button
                       onClick={() => handleDeleteContest(contest._id)}
                       className="bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
@@ -109,21 +123,11 @@ const handleDeleteContest = async (id) => {
                       Delete
                     </button>
                   </>
-                )}
-                {
-                  contest.status === "Reject" ? <button
-                    onClick={() => handleDeleteContest(contest._id)}
-                    className="bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
-                  >
-                    Delete
-                </button> : ''
-                }
                 <Link
-                    
-                    to={contest.status === "Reject" ? "" : `/dashboard/submitted-tasks/${contest._id}`}
-                    className={`btn font-bold rounded-2xl text-xs sm:text-sm ${contest.status === "Reject" ? 'hidden' : 'bg-primary text-white'}`}
+                    onClick={() => handleManageContest(contest._id, 'Reject')}
+                    className="btn font-bold bg-primary text-white rounded-2xl w-30  text-xs sm:text-sm"
                 >
-                    Submissions
+                    Reject
                 </Link>
               </td>
             </tr>
@@ -135,4 +139,4 @@ const handleDeleteContest = async (id) => {
   );
 };
 
-export default CreatedContests;
+export default ManageContests;

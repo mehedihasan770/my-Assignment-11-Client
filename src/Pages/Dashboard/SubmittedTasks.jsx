@@ -42,10 +42,7 @@ const SubmittedTasks = () => {
           }
         });
     }
-
     const hasWinner = tasks?.submissionsTask?.some(t => t.isWinner)
-
-    console.log(tasks.submissionsTask)
     if(isLoading) return <Loader></Loader>
     return (
       <div className="shadow-md md:px-6 py-8 rounded-2xl">

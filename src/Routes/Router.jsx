@@ -13,6 +13,7 @@ import CreatedContests from "../Pages/Dashboard/CreatedContests";
 import SubmittedTasks from "../Pages/Dashboard/SubmittedTasks";
 import EditContest from "../Pages/Dashboard/EditContest";
 import CreatorRoutes from "./CreatorRoutes";
+import ManageContests from "../Pages/Dashboard/ManageContests";
 
 export const router = createBrowserRouter([
     {
@@ -49,7 +50,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'manage-users',
-                element: <ManageUsers/>
+                element: <AdminRoutes><ManageUsers/></AdminRoutes>
+            },
+            {
+                path: 'manage-contests',
+                element: <AdminRoutes><ManageContests/></AdminRoutes>
             },
             {
                 path: 'create-contest',

@@ -71,6 +71,7 @@ const Dashboard = () => {
         </li>
         </>}
         
+        {roleData?.role === 'admin' &&  <>
         <li>
           <NavLink to={'/dashboard/manage-users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Users">
             <GrUserManager className="my-1.5 inline-block size-4" />
@@ -78,11 +79,13 @@ const Dashboard = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Contests">
+          <NavLink to={'/dashboard/manage-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Contests">
             <MdManageSearch className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Manage Contests</span>
           </NavLink>
         </li>
+        </>}
+
         <li>
           <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Profile">
             <ImProfile className="my-1.5 inline-block size-4" />
