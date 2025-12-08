@@ -8,14 +8,17 @@ import { GiPodiumWinner } from "react-icons/gi";
 import { ImProfile } from 'react-icons/im';
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineAddTask } from "react-icons/md";
-import { BsSendArrowDownFill } from "react-icons/bs";
-import { FaEdit } from 'react-icons/fa';
+import useDashboardRole from '../Hooks/useDashboardRole';
+import Loader from '../Components/Loading/Loader';
+
 
 const Dashboard = () => {
+  const { roleData, roleLoading } = useDashboardRole()
     return (
         <div className='max-w-11/12 md:max-w-10/12 mx-auto'>
           <header className="sticky top-3 z-50"><Navbar></Navbar></header>
             <main className='bg-secondary mt-5 mb-5 rounded-2xl dark:bg-[#261B25]'>
+              { roleLoading ? <Loader></Loader> :
                 <div className="drawer lg:drawer-open">
                   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                   <div className="drawer-content">
@@ -52,7 +55,8 @@ const Dashboard = () => {
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Winning Contests</span>
           </NavLink>
         </li>
-        <li>
+        {roleData?.role === 'creator' &&  <>
+          <li>
           <NavLink to={'/dashboard/create-contest'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Create Contest">
             <IoMdAddCircleOutline className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Create Contest</span>
@@ -64,12 +68,7 @@ const Dashboard = () => {
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Created Contests</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Submitted Tasks">
-            <BsSendArrowDownFill className="my-1.5 inline-block size-4" />
-            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Submitted Tasks</span>
-          </NavLink>
-        </li>
+        </>}
         <li>
           <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Manage Users">
             <GrUserManager className="my-1.5 inline-block size-4" />
@@ -91,7 +90,7 @@ const Dashboard = () => {
       </ul>
     </div>
   </div>
-</div>
+</div>}
             </main>
             <footer></footer>
         </div>
