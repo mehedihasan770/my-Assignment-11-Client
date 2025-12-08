@@ -23,7 +23,6 @@ const SubmittedTasks = () => {
     }
 
     const handleDeclareWinner =async (email, id) => {
-        console.log(email, id)
         Swal.fire({
           title: "Are you sure?",
           icon: "warning",
@@ -91,7 +90,7 @@ const SubmittedTasks = () => {
                   </td>
                   <td className="space-x-2 flex items-center">
                     <label htmlFor="my_modal_6" onClick={() => handleViewTask(task.task.description, task.task.fileUrl, task.task.title)} className="bg-green-500 text-white px-2 py-1 btn w-30 rounded-2xl my-2">
-                      Vew Task
+                      View Task
                     </label>
                     <button disabled={hasWinner} onClick={() => handleDeclareWinner(task.participant.email, tasks._id)} className={hasWinner ? ' px-2 rounded-2xl py-1 btn w-30 text-black bg-gray-300' : "bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl"}>Declare Winner</button>
                   </td>

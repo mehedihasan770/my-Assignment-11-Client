@@ -65,12 +65,6 @@ const Dashboard = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Edit contest">
-            <FaEdit className="my-1.5 inline-block size-4" />
-            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Edit contest</span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Submitted Tasks">
             <BsSendArrowDownFill className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Submitted Tasks</span>

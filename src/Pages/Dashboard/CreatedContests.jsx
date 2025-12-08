@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useAuth } from "../../Hooks/useAuth";
 import Loader from "../../Components/Loading/Loader";
-import { Link, Outlet } from "react-router";
+import { Link } from "react-router";
+import { useAuth } from "../../hooks/useAuth";
 
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -18,23 +18,14 @@ const CreatedContests = () => {
   });
 
   const handleDelete = (id) => {
-    // Delete logic here
+    
   };
-
-  const handleEdit = (id) => {
-    // Edit logic here
-  };
-
-  const handleViewSubmissions = (id) => {
-    // View submissions logic here
-  };
-
   if (isLoading) return <Loader />;
 
   return (
     <div className="shadow-md md:px-6 py-8 rounded-2xl">
         <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Add New Contest
+        Created Contest
       </h2>
       <div className="overflow-x-scroll">
       <table className="min-w-full bg-white dark:bg-gray-900 text-sm sm:text-xs">
@@ -75,12 +66,12 @@ const CreatedContests = () => {
               <td className="px-4 py-2 flex gap-1 sm:gap-2">
                 {contest.status === "pending" && (
                   <>
-                    <button
-                      onClick={() => handleEdit(contest._id)}
+                    <Link
+                      to={`/dashboard/edit-contest/${contest._id}`}
                       className="bg-green-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
                     >
                       Edit
-                    </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(contest._id)}
                       className="bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl text-xs sm:text-sm"
@@ -91,7 +82,6 @@ const CreatedContests = () => {
                 )}
                 <Link
                     to={`/dashboard/submitted-tasks/${contest._id}`}
-                    onClick={() => handleViewSubmissions(contest._id)}
                     className="btn font-bold bg-primary text-white rounded-2xl text-xs sm:text-sm"
                 >
                     Submissions

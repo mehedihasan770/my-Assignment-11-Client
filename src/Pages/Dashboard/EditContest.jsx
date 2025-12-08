@@ -1,22 +1,28 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useDashboardRole from "../../Hooks/useDashboardRole";
-import { useAuth } from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
+import Loader from "../../Components/Loading/Loader";
+import Swal from "sweetalert2";
 
-const AddContest = () => {
-    const { user } = useAuth();
+const EditContest = () => {
+    const { id } = useParams()
     const  axiosSecure = useAxiosSecure();
-    const dashboardRole = useDashboardRole()
     const { register, handleSubmit, reset } = useForm();
-    const [deadline, setDeadline] = useState(new Date());
+
+    const { data: contest = {}, isLoading, refetch } = useQuery({
+        queryKey: ["contestsTask", id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/contests/${id}/task`);
+            return res.data;
+        },
+    });
 
     const onSubmit =async (data) => {
         const {name, contestType, image, price, prizeMoney, description, taskInstruction} = data;
-        const contestInfo = {
+        const contestEditInfo = {
             name,
             contestType,
             image,
@@ -24,32 +30,37 @@ const AddContest = () => {
             prizeMoney: Number(prizeMoney),
             description,
             taskInstruction,
-            deadline,
-            status: 'pending',
-            submissionsTask: [],
-            creator_email: user.email,
-            creator_name: user.displayName,
-            creator_img: user.photoURL,
-            created_at: new Date().toLocaleString()
         };
         try {
-        const res = await axiosSecure.post(`/contests/${user?.email}/${dashboardRole?.roleData?.role}`, contestInfo);
-
-        if (res.data.success) {
-            toast.success("Contest added successfully!");
-            reset();
-        } else {
-            toast.error("Failed to add contest!");
-        }
+            Swal.fire({
+                title: "Are you sure?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Conform Update"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                await axiosSecure.patch(`/contests/${id}/contest`, contestEditInfo);
+                Swal.fire({
+                    title: "Contest updated",
+                    text: "Your Contest has been updated",
+                    icon: "success"
+                });
+                    refetch()
+                }
+            });
         } catch (err) {
-            toast.error("Error: " + err.data.message);
+            toast.error("Error",err.data.message);
         }
     };
+
+    if(isLoading) return <Loader></Loader>
 
   return (
     <div className="w-full px-2 md:px-6 py-8">
       <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Add New Contest
+        Edit Contest
       </h2>
 
       <form
@@ -60,11 +71,13 @@ const AddContest = () => {
           <input
             {...register("name")}
             placeholder="Contest Name"
+            defaultValue={contest.name}
             required
             className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
           />
           <select
             {...register("contestType")}
+            defaultValue={contest.contestType}
             required
             className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
           >
@@ -78,6 +91,7 @@ const AddContest = () => {
         <input
           {...register("image")}
           placeholder="Image URL"
+          defaultValue={contest.image}
           required
           className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
         />
@@ -86,6 +100,7 @@ const AddContest = () => {
           <input
             type="number"
             {...register("price")}
+            defaultValue={contest.price}
             placeholder="Entry Fee"
             required
             className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
@@ -93,6 +108,7 @@ const AddContest = () => {
           <input
             type="number"
             {...register("prizeMoney")}
+            defaultValue={contest.prizeMoney}
             placeholder="Prize Money"
             required
             className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
@@ -101,6 +117,7 @@ const AddContest = () => {
 
         <textarea
           {...register("description")}
+          defaultValue={contest.description}
           placeholder="Contest Description"
           rows={3}
           required
@@ -109,33 +126,21 @@ const AddContest = () => {
 
         <textarea
           {...register("taskInstruction")}
+          defaultValue={contest.taskInstruction}
           placeholder="Task Instruction"
           rows={2}
           required
           className="w-full border border-primary rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
         />
-
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium dark:text-gray-200">Deadline</label>
-          <DatePicker
-            selected={deadline}
-            onChange={setDeadline}
-            showTimeSelect
-            dateFormat="Pp"
-            required
-            className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-
         <button
           type="submit"
           className="w-full md:w-[25%] btn rounded-2xl bg-primary text-white font-bold"
         >
-          Add Contest
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default AddContest;
+export default EditContest;
