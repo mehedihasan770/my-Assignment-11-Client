@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home";
-import AllContests from "../Pages/AllContests";
 import Signin from "../Pages/Signin";
 import Signup from "../Pages/Signup";
 import AuthLayout from "../Layouts/AuthLayout";
@@ -14,6 +13,7 @@ import SubmittedTasks from "../Pages/Dashboard/SubmittedTasks";
 import EditContest from "../Pages/Dashboard/EditContest";
 import CreatorRoutes from "./CreatorRoutes";
 import ManageContests from "../Pages/Dashboard/ManageContests";
+import AllContests from "../Pages/AllContests";
 
 export const router = createBrowserRouter([
     {

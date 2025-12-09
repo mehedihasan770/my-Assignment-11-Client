@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useDashboardRole from "../../Hooks/useDashboardRole";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddContest = () => {
     const { user } = useAuth();
@@ -64,9 +64,10 @@ const AddContest = () => {
             className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
           >
             <option value="">Select Contest Type</option>
-            <option value="Design">Design</option>
-            <option value="Writing">Writing</option>
-            <option value="Marketing">Marketing</option>
+            <option value="Image Design">Image Design</option>
+            <option value="Article Writing">Article Writing</option>
+            <option value="Business Idea">Business Idea</option>
+            <option value="Logo Design">Logo Design</option>
           </select>
         </div>
 

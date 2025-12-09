@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../Components/Loading/Loader";
 import { Link } from "react-router";
-import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useAuth } from "../../Hooks/useAuth";
 
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
