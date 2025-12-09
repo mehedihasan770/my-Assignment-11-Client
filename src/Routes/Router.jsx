@@ -14,6 +14,7 @@ import EditContest from "../Pages/Dashboard/EditContest";
 import CreatorRoutes from "./CreatorRoutes";
 import ManageContests from "../Pages/Dashboard/ManageContests";
 import AllContests from "../Pages/AllContests";
+import ContestDetails from "../Pages/ContestDetails";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-contests',
                 Component: AllContests,
+            },
+            {
+                path: 'contest-details/:id',
+                element: <ContestDetails/>
             },
         ]
     },

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Loader from "../Components/Loading/Loader";
+import { Link, useSearchParams } from "react-router";
+import axios from "axios";
 
 const AllContests = () => {
+  const [ searchParams, setSearchParams ] = useSearchParams()
+  const sessionId = searchParams?.get('session_id')
   const axiosSecure = useAxiosSecure()
   const [activeTab, setActiveTab] = useState("Image Design");
   const tabs = ["Image Design","Article Writing","Business Idea","Logo Design",];
@@ -14,6 +18,13 @@ const AllContests = () => {
       return res.data;
     },
   });
+
+  useEffect(() => {
+    if(sessionId){
+      axiosSecure.post('/payment-success', { sessionId })
+    }
+  }, [axiosSecure, sessionId])
+
   const filteredContests = contests.filter((contest) => contest.contestType === activeTab);
   return (
     <div className="mt-5 mb-5 font-sans">
@@ -39,7 +50,7 @@ const AllContests = () => {
           <p className="text-gray-500 col-span-full">No contests available in this category yet.</p>
         ) : (
           filteredContests.map((contest) => (
-            <div className="bg-secondary dark:bg-[#261B25] rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+            <div key={contest._id} className="bg-secondary dark:bg-[#261B25] rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
       
               <img src={contest.image} alt={contest.name} className="w-full h-48 object-cover rounded-lg mb-4"/>
 
@@ -50,7 +61,7 @@ const AllContests = () => {
               <div className="flex justify-between items-center mt-4">
                 <span className="px-3 py-1 text-sm bg-[#ff6f0048] text-[#FF6D00] font-bold dark:bg-blue-600 dark:text-white rounded-full">{contest.contestType}</span>
             
-                <button className="px-4 rounded-2xl py-2 bg-primary btn text-white text-sm transition">Details</button>
+                <Link to={`/contest-details/${contest._id}`} className="px-4 rounded-2xl py-2 bg-primary btn text-white text-sm transition">Details</Link>
               </div>
             </div>
           ))

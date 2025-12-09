@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loader from '../../Components/Loading/Loader';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const SubmittedTasks = () => {
     const axiosSecure = useAxiosSecure();

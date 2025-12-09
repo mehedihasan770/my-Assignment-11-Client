@@ -26,6 +26,8 @@ const AddContest = () => {
             taskInstruction,
             deadline,
             status: 'pending',
+            participantsCount : 0,
+            winnerDetails: {},
             submissionsTask: [],
             creator_email: user.email,
             creator_name: user.displayName,
