@@ -24,16 +24,6 @@ const SubmittedTasks = () => {
         setModalData(tasks)
     }
 
-    // const handleSetWinner = async () => {
-    //   const winnerData = {
-    //     photo: tasks?.participant?.image,
-    //     name: tasks?.participant?.name,
-    //     email: tasks?.participant?.email,
-    //   }
-    //   const res = await axiosSecure.post(`/contest/${id}/winner`, winnerData)
-    //   console.log(res.data);
-    // }
-
     const handleDeclareWinner =async (email, id, name, image) => {
       const winnerData = {
         photo: image,

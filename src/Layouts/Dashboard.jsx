@@ -37,20 +37,21 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-4" aria-label="open sidebar" className="lg:block hidden cursor-pointer mx-auto">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-6"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
         </label>
+
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Homepage">
+          <NavLink to={'/dashboard/home'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Homepage">
             <BiHome className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Homepage</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Participated Contests">
+          <NavLink to={'/dashboard/participated-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Participated Contests">
             <MdOutlineBookmarkAdded className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Participated Contests</span>
           </NavLink>
         </li>
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Winning Contests">
+          <NavLink to={'/dashboard/winning-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Winning Contests">
             <GiPodiumWinner className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Winning Contests</span>
           </NavLink>
@@ -87,7 +88,7 @@ const Dashboard = () => {
         </>}
 
         <li>
-          <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Profile">
+          <NavLink to={'/dashboard/profile'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Profile">
             <ImProfile className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Profile</span>
           </NavLink>

@@ -68,7 +68,7 @@ const Navbar = () => {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <NavLink className="navBTN">
+                  <NavLink to={'/dashboard/profile'} className="navBTN">
                     <ImProfile /> Profile
                   </NavLink>
                 </li>

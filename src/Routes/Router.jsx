@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home";
 import Signin from "../Pages/Signin";
@@ -15,6 +15,10 @@ import CreatorRoutes from "./CreatorRoutes";
 import ManageContests from "../Pages/Dashboard/ManageContests";
 import AllContests from "../Pages/AllContests";
 import ContestDetails from "../Pages/ContestDetails";
+import ParticipatedContests from "../Pages/Dashboard/ParticipatedContests";
+import WinningContests from "../Pages/Dashboard/WinningContests";
+import UserHome from "../Pages/Dashboard/UserHome";
+import Profile from "../Pages/Dashboard/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +58,18 @@ export const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
+                index: true,
+                element: <Navigate to={'/dashboard/home'} />
+            },
+            {
+                path: 'home',
+                element: <UserHome/>
+            },
+            {
+                path: 'profile',
+                element: <Profile/>
+            },
+            {
                 path: 'manage-users',
                 element: <AdminRoutes><ManageUsers/></AdminRoutes>
             },
@@ -76,6 +92,14 @@ export const router = createBrowserRouter([
             {
                 path: 'edit-contest/:id',
                 element: <CreatorRoutes><EditContest/></CreatorRoutes>
+            },
+            {
+                path: 'participated-contests',
+                element: <ParticipatedContests/>
+            },
+            {
+                path: 'winning-contests',
+                element: <WinningContests/>
             },
         ]
     }

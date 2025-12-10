@@ -64,6 +64,7 @@ const ContestDetails = () => {
       contestId: id,
       name: contest.name,
       price: contest.price,
+      prizeMoney: contest.prizeMoney,
       creator_email: contest.creator_email,
       creator_name: contest.creator_name,
       deadline: contest.deadline,
