@@ -229,7 +229,7 @@ const ContestDetails = () => {
 
                 <button
                   type="submit"
-                  className="bg-primary text-white py-2 rounded-md font-semibold"
+                  className="bg-primary cursor-pointer text-white py-2 rounded-md font-semibold"
                 >
                   Submit
                 </button>

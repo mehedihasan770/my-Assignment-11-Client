@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import Loader from "../../Components/Loading/Loader";

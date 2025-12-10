@@ -20,8 +20,8 @@ const ParticipatedContests = () => {
     if(isLoading) return <Loader/>
 
     return (
-        <div className="shadow-md md:px-6 py-8 rounded-2xl">
-        <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+      <div className="shadow-md md:px-6 py-8 rounded-2xl">
+      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
         Participated Contest
       </h2>
       <div className="overflow-x-scroll">

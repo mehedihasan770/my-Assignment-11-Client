@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loader from '../../Components/Loading/Loader';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { useAuth } from '../../hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useAuth } from '../../Hooks/useAuth';
 import { Link } from 'react-router';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
