@@ -17,12 +17,30 @@ const SubmittedTasks = () => {
         },
     });
 
-    const handleViewTask = (description, fileUrl, title ) => {
-        const task = {description, fileUrl, title}
-        setModalData(task)
+    console.log(tasks.submissionsTask)
+
+    const handleViewTask = (task ) => {
+        const tasks = {task}
+        setModalData(tasks)
     }
 
-    const handleDeclareWinner =async (email, id) => {
+    // const handleSetWinner = async () => {
+    //   const winnerData = {
+    //     photo: tasks?.participant?.image,
+    //     name: tasks?.participant?.name,
+    //     email: tasks?.participant?.email,
+    //   }
+    //   const res = await axiosSecure.post(`/contest/${id}/winner`, winnerData)
+    //   console.log(res.data);
+    // }
+
+    const handleDeclareWinner =async (email, id, name, image) => {
+      const winnerData = {
+        photo: image,
+        name: name,
+        email: email,
+      }
+      console.log(winnerData)
         Swal.fire({
           title: "Are you sure?",
           icon: "warning",
@@ -32,7 +50,7 @@ const SubmittedTasks = () => {
           confirmButtonText: "Conform Declare"
         }).then(async (result) => {
           if (result.isConfirmed) {
-            await axiosSecure.patch(`/contests/${id}/${email}/winner`)
+            await axiosSecure.patch(`/contests/${id}/${email}/winner`, winnerData)
             Swal.fire({
               title: "Winner Declared",
               text: "Your Winner has been Declared",
@@ -86,10 +104,10 @@ const SubmittedTasks = () => {
                     {new Date(task.submittedAt).toLocaleString()}
                   </td>
                   <td className="space-x-2 flex items-center">
-                    <label htmlFor="my_modal_6" onClick={() => handleViewTask(task.task.description, task.task.fileUrl, task.task.title)} className="bg-green-500 text-white px-2 py-1 btn w-30 rounded-2xl my-2">
+                    <label htmlFor="my_modal_6" onClick={() => handleViewTask(task.task)} className="bg-green-500 text-white px-2 py-1 btn w-30 rounded-2xl my-2">
                       View Task
                     </label>
-                    <button disabled={hasWinner} onClick={() => handleDeclareWinner(task.participant.email, tasks._id)} className={hasWinner ? ' px-2 rounded-2xl py-1 btn w-30 text-black bg-gray-300' : "bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl"}>Declare Winner</button>
+                    <button disabled={hasWinner} onClick={() => handleDeclareWinner(task.participant.email, tasks._id, task.participant.name, task.participant.image)} className={hasWinner ? ' px-2 rounded-2xl py-1 btn w-30 text-black bg-gray-300' : "bg-red-500 text-white px-2 py-1 btn w-30 rounded-2xl"}>Declare Winner</button>
                   </td>
                 </tr>
               ))}
@@ -100,9 +118,7 @@ const SubmittedTasks = () => {
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />
         <div className="modal" role="dialog">
           <div className="modal-box space-y-3">
-            <h3 className="text-lg font-bold">{modalData.title}</h3>
-            <Link to={modalData.fileUrl} className='btn'>File URL</Link>
-            <p>{modalData.description}</p>
+            <p>{modalData?.task?.task}</p>
             <div className="modal-action">
               <label htmlFor="my_modal_6" className="btn">
                 Close!
