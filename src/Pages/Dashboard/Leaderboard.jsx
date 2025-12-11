@@ -78,7 +78,7 @@ const Leaderboard = () => {
         <p className="text-primary font-bold">{i + 4}</p>
         <img
           src={user.image}
-          alt={user.name}
+          alt=''
           className="w-14 h-14 rounded-full object-cover border-2 border-primary"
         />
         <div>

@@ -22,6 +22,8 @@ import UserRoutes from "./UserRoutes";
 import PrivetRoutes from "./PrivetRoutes";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import Leaderboard from "../Pages/Dashboard/Leaderboard";
+import AboutUs from "../Pages/AboutUs";
+import Guidelines from "../Pages/Guidelines";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
             {
                 path: 'all-contests',
                 Component: AllContests,
+            },
+            {
+                path: 'about-us',
+                Component: AboutUs,
+            },
+            {
+                path: 'guidelines',
+                Component: Guidelines,
             },
             {
                 path: 'contest-details/:id',

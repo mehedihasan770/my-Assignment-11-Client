@@ -3,11 +3,12 @@ import { FaTrophy } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { GoSignOut } from "react-icons/go";
 import { MdDashboard } from "react-icons/md";
-import { ImProfile } from "react-icons/im";
+import { FaChartLine } from "react-icons/fa6";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import toast from "react-hot-toast";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../Hooks/useAuth";
 
 const Navbar = () => {
   const { user, loading, signOutUser } = useAuth();
@@ -23,6 +24,18 @@ const Navbar = () => {
         <NavLink to={"/all-contests"} className="navBTN">
           <PiLayoutFill />
           All Contests
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/about-us"} className="navBTN">
+          <IoMdInformationCircleOutline />
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/guidelines"} className="navBTN">
+          <FaChartLine />
+          Guidelines
         </NavLink>
       </li>
     </>
@@ -68,8 +81,8 @@ const Navbar = () => {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <NavLink to={'/dashboard/profile'} className="navBTN">
-                    <ImProfile /> Profile
+                  <NavLink className='font-bold'>
+                    {user?.displayName}
                   </NavLink>
                 </li>
                 <div className="lg:hidden block space-y-2">{links}</div>
