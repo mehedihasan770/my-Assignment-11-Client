@@ -44,18 +44,21 @@ const Dashboard = () => {
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Homepage</span>
           </NavLink>
         </li>
-        <li>
+
+        {roleData?.role === 'user' &&  <>
+          <li>
           <NavLink to={'/dashboard/participated-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Participated Contests">
             <MdOutlineBookmarkAdded className="my-1.5 inline-block size-4" />
-            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Participated Contests</span>
+            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Participated Contests</span>
           </NavLink>
         </li>
         <li>
           <NavLink to={'/dashboard/winning-contests'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="My Winning Contests">
             <GiPodiumWinner className="my-1.5 inline-block size-4" />
-            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">My Winning Contests</span>
+            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Winning Contests</span>
           </NavLink>
         </li>
+        </>}
 
         {roleData?.role === 'creator' &&  <>
           <li>

@@ -19,6 +19,7 @@ import ParticipatedContests from "../Pages/Dashboard/ParticipatedContests";
 import WinningContests from "../Pages/Dashboard/WinningContests";
 import UserHome from "../Pages/Dashboard/UserHome";
 import Profile from "../Pages/Dashboard/Profile";
+import UserRoutes from "./UserRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -95,11 +96,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'participated-contests',
-                element: <ParticipatedContests/>
+                element: <UserRoutes><ParticipatedContests/></UserRoutes>
             },
             {
                 path: 'winning-contests',
-                element: <WinningContests/>
+                element: <UserRoutes><WinningContests/></UserRoutes>
             },
         ]
     }
