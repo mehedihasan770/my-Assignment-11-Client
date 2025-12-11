@@ -17,9 +17,11 @@ import AllContests from "../Pages/AllContests";
 import ContestDetails from "../Pages/ContestDetails";
 import ParticipatedContests from "../Pages/Dashboard/ParticipatedContests";
 import WinningContests from "../Pages/Dashboard/WinningContests";
-import UserHome from "../Pages/Dashboard/UserHome";
 import Profile from "../Pages/Dashboard/Profile";
 import UserRoutes from "./UserRoutes";
+import PrivetRoutes from "./PrivetRoutes";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
+import Leaderboard from "../Pages/Dashboard/Leaderboard";
 
 export const router = createBrowserRouter([
     {
@@ -36,7 +38,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'contest-details/:id',
-                element: <ContestDetails/>
+                element: <PrivetRoutes><ContestDetails/></PrivetRoutes>
             },
         ]
     },
@@ -56,7 +58,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivetRoutes><Dashboard/></PrivetRoutes>,
         children: [
             {
                 index: true,
@@ -64,11 +66,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'home',
-                element: <UserHome/>
+                element: <PrivetRoutes><DashboardHome/></PrivetRoutes>
             },
             {
                 path: 'profile',
-                element: <Profile/>
+                element: <PrivetRoutes><Profile/></PrivetRoutes>
             },
             {
                 path: 'manage-users',
@@ -101,6 +103,10 @@ export const router = createBrowserRouter([
             {
                 path: 'winning-contests',
                 element: <UserRoutes><WinningContests/></UserRoutes>
+            },
+            {
+                path: 'leaderboard',
+                element: <PrivetRoutes><Leaderboard/></PrivetRoutes>
             },
         ]
     }

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { auth } from "../FirebaseConfig/Firebase";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../Hooks/useAuth";
 
 const Signup = () => {
   const axiosSecure = useAxiosSecure();

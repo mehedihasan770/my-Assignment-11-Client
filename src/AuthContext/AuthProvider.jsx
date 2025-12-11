@@ -46,6 +46,7 @@ const AuthProvider = ({children}) => {
 
     const userInfo = {
         user,
+        setUser,
         loading,
         setLoading,
         signUpWithEP,

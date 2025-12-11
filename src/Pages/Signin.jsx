@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
-import { useAuth } from "../hooks/useAuth";
+import { Link, useNavigate, useLocation } from "react-router";
+import { useAuth } from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { auth } from "../FirebaseConfig/Firebase";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Signin = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const axiosSecure = useAxiosSecure();
-  const { signInWithEP, signInWithGG, setLoading } = useAuth();
+  const { signInWithEP, signInWithGG, setLoading, setUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const handleSignIn = async (data) => {
     const { email, password } = data;
     try {
       await signInWithEP(email, password);
+      console.log('hallo')
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
@@ -26,10 +29,12 @@ const Signin = () => {
       await axiosSecure.post("/users", userInfo);
       toast.success("Signed in successfully!");
       setLoading(false);
+      navigate(location?.state || '/');
       reset();
     } catch (error) {
       if (error.response?.status === 409) {
-        toast.success("Signed in with Google successfully!");
+        toast.success("Signed in successfully!");
+        navigate(location?.state || '/');
       } else {
         toast.error(`${error.message}`);
       }
@@ -38,7 +43,8 @@ const Signin = () => {
   };
   const handleSignInGG = async () => {
     try {
-      await signInWithGG();
+      const res = await signInWithGG();
+      setUser(res.user)
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
@@ -47,16 +53,19 @@ const Signin = () => {
       };
       await axiosSecure.post("/users", userInfo);
       toast.success("Signed in with Google successfully!");
+      navigate(location?.state || '/');
       setLoading(false);
     } catch (error) {
       if (error.response?.status === 409) {
         toast.success("Signed in with Google successfully!");
+        navigate(location?.state || '/');
       } else {
         toast.error(`${error.message}`);
       }
       setLoading(false);
     }
   };
+    console.log(location.state)
 
   return (
     <div className="min-h-screen flex justify-center items-center mt-5 mb-5">

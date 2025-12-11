@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router';
 import Navbar from '../Components/Navbar/Navbar';
 import { BiHome } from 'react-icons/bi';
 import { GrUserManager } from "react-icons/gr";
-import { MdManageSearch, MdOutlineBookmarkAdded } from "react-icons/md";
+import { MdManageSearch, MdOutlineBookmarkAdded, MdOutlineLeaderboard } from "react-icons/md";
 import { GiPodiumWinner } from "react-icons/gi";
 import { ImProfile } from 'react-icons/im';
 import { IoMdAddCircleOutline } from "react-icons/io";
@@ -91,11 +91,20 @@ const Dashboard = () => {
         </>}
 
         <li>
+          <NavLink to={'/dashboard/leaderboard'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Leaderboard">
+            <MdOutlineLeaderboard className="my-1.5 inline-block size-4" />
+            <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Leaderboard</span>
+          </NavLink>
+        </li>
+
+        <li>
           <NavLink to={'/dashboard/profile'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right dasBTN" data-tip="Profile">
             <ImProfile className="my-1.5 inline-block size-4" />
             <span className="is-drawer-close:hidden whitespace-nowrap overflow-hidden text-ellipsis">Profile</span>
           </NavLink>
         </li>
+
+
       </ul>
     </div>
   </div>

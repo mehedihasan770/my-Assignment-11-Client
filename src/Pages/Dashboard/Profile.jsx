@@ -17,17 +17,23 @@ const Profile = () => {
     const handleEditProfile =async ( data ) => {
         const userInfo = {
             name: data?.name,
-            img: data.photoURL
+            img: data?.photoURL
         }
         try{
             await updateUserPF(data?.name, data.photoURL)
-            const res = await axiosSecure.patch(`user/${user?.email}/edit`, userInfo)
-            console.log(res)
+            await axiosSecure.patch(`user/${user?.email}/edit`, userInfo)
             setLoading(false);
             toast.success('Your Profile Edit Successful')
         } catch(error) {
-            toast.error(`Signup failed: ${error.message}`);
-            setLoading(false);
+            if(error.status === 401){
+                toast.success('Your Profile Edit Successful')
+                setLoading(false);
+            }
+            else{
+                toast.error(`Edit failed: ${error.message}`);
+                setLoading(false);
+            }
+            
         }
     }
 
