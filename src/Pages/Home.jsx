@@ -1,5 +1,9 @@
 import React from 'react';
 import Banner from '../Components/Home/Banner';
+import WinnerAdvertisement from '../Components/Home/WinnerAdvertisement';
+import AboutUs from '../Components/Home/AboutUs';
+import Guidelines from '../Components/Home/Guidelines';
+import FAQ from '../Components/Home/FAQ';
 
 const Home = () => {
     return (
@@ -7,6 +11,13 @@ const Home = () => {
             <header>
                 <Banner/>
             </header>
+            <main>
+                <WinnerAdvertisement/>
+                <FAQ/>
+                <Guidelines/>
+                <AboutUs/>
+                
+            </main>
         </div>
     );
 };

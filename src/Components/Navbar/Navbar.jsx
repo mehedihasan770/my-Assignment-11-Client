@@ -6,7 +6,7 @@ import { MdDashboard } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa6";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
-import { IoMdInformationCircleOutline } from "react-icons/io";
+import { IoMdInformationCircleOutline, IoMdMenu } from "react-icons/io";
 import toast from "react-hot-toast";
 import { useAuth } from "../../Hooks/useAuth";
 
@@ -68,7 +68,8 @@ const Navbar = () => {
           {loading ? (
             <div className="loader h-10"></div>
           ) : user ? (
-            <div className="dropdown dropdown-end">
+            <>
+            <div className="dropdown dropdown-end hidden lg:block">
               <div tabIndex={0} role="button">
                 <img
                   src={user?.photoURL}
@@ -98,14 +99,54 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
+            <div>
+              <div className="dropdown dropdown-end lg:hidden">
+              <div tabIndex={0} role="button" className="cursor-pointer">
+                <IoMdMenu  size={30}/>
+              </div>
+              <ul
+                tabIndex="-1"
+                className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm"
+              >
+                <li>
+                  <NavLink className='font-bold'>
+                    {user?.displayName}
+                  </NavLink>
+                </li>
+                <div className="lg:hidden block space-y-2">{links}</div>
+                <li>
+                  <NavLink to={"/dashboard"} className="navBTN">
+                    <MdDashboard /> Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <button onClick={handleSignOut} className="navBTN">
+                    <GoSignOut /> Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+            </div>
+            </>
           ) : (
             <>
+              <div className="dropdown dropdown-end lg:hidden">
+                <div tabIndex={0} role="button" className="cursor-pointer">
+                  <IoMdMenu  size={30}/>
+                </div>
+                <ul
+                  tabIndex="-1"
+                  className="dropdown-content menu bg-base-100 rounded-box z-1 space-y-2 w-52 p-2 shadow-sm absolute"
+                >
+                  <div className="lg:hidden block space-y-2">{links}</div>
+                </ul>
+              </div>
               <li className="list-none">
                 <NavLink to={"/auth/signin"} className="navBTN">
                   Sign In
                 </NavLink>
               </li>
-              <li className="list-none hidden md:block">
+              <li className="list-none hidden lg:block">
                 <NavLink to={"/auth/signup"} className="navBTN">
                   Sign Up
                 </NavLink>

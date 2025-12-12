@@ -10,12 +10,13 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineAddTask } from "react-icons/md";
 import useDashboardRole from '../Hooks/useDashboardRole';
 import Loader from '../Components/Loading/Loader';
+import Footer from '../Components/Home/Footer';
 
 
 const Dashboard = () => {
   const { roleData, roleLoading } = useDashboardRole()
     return (
-        <div className='max-w-11/12 md:max-w-10/12 mx-auto'>
+        <div className='max-w-11/12 md:max-w-10/12 lg:max-w-9/12 mx-auto'>
           <header className="sticky top-3 z-50"><Navbar></Navbar></header>
             <main className='bg-secondary mt-5 mb-5 rounded-2xl dark:bg-[#261B25]'>
               { roleLoading ? <Loader></Loader> :
@@ -110,7 +111,7 @@ const Dashboard = () => {
   </div>
 </div>}
             </main>
-            <footer></footer>
+            <footer><Footer/></footer>
         </div>
     );
 };

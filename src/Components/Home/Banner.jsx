@@ -10,7 +10,7 @@ const Banner = () => {
     const {user} = useAuth()
     const axiosSecure = useAxiosSecure()
     const [contestType, setContestType] = useState('')
-    const {data : contests = [], isLoading : loading2} = useQuery({
+    const {data : contests = []} = useQuery({
         queryKey : ['findContest', contestType],
         queryFn : async () => {
             const res = await axiosSecure.get(`/find/contest?contestType=${contestType}`)
@@ -29,6 +29,7 @@ const Banner = () => {
         <>
         <div className='w-full rounded-2xl relative'>
             <div className='rounded-2xl h-[48vh] overflow-hidden'>
+                <div class="absolute inset-0 bg-linear-to-b from-black/75 to-black/30 rounded-2xl"></div>
                 <img className='rounded-2xl w-full h-full object-cover' src={banner} alt="Banner" />
             </div>
             <form className="flex items-center justify-center space-x-2 max-w-md mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -37,11 +38,11 @@ const Banner = () => {
                     value={contestType}
                     onChange={(e) => setContestType(e.target.value)}
                     placeholder="Search by contest type..."
-                    className="flex-1 px-4 py-3 rounded-l-full border focus:outline-none text-white focus:ring-2 focus:ring-purple-400"
+                    className="flex-1 px-4 py-3 rounded-l-full w-[200px] border focus:outline-none text-white border-primary focus:ring-2 focus:ring-primary"
                 />
                 <button
                     type="button"
-                    className="bg-purple-500 text-white px-6 py-3 rounded-r-full font-semibold"
+                    className="bg-primary border-2 border-primary text-white px-6 py-3 rounded-r-full font-semibold"
                 >
                     Search
                 </button>
@@ -49,8 +50,8 @@ const Banner = () => {
         </div>
         <div className='mt-10'>
             {loading1 && <Loader/>}
-            <h2 className="text-3xl font-bold mb-8 text-center text-primary">{contestType ? 'Find Contest' : 'Top 6 Participants Contest'}</h2>     
-            {contestType.length > 0 && contests.length === 0 ? <h1 className='text-3xl text-center font-bold'>No Contest Find</h1> :
+            <h2 className="text-2xl md:text-3xl font-bold mt-20 mb-5 bg-primary text-center text-white border-2 border-primary py-2 rounded-2xl">{contestType ? 'Find Contest' : 'Top Participated Contest'}</h2>     
+            {contestType.length > 0 && contests.length === 0 ? <h1 className='text-3xl text-center font-bold text-gray-400'>No Contest fund</h1> :
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {
                         (contestType ? contests : top6Contests || []).map((contest) => (
@@ -70,6 +71,7 @@ const Banner = () => {
                 ))
             }
         </div>}
+        <Link to={'/all-contests'} className='btn bg-primary text-white font-bold rounded-2xl mt-5'>Show All</Link>
         </div>
         </>
     );

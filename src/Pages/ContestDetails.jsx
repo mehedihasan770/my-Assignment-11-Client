@@ -113,6 +113,9 @@ const ContestDetails = () => {
               <p className="text-gray-800 dark:text-white font-semibold">
                 Winner: {contest.winnerDetails.name}
               </p>
+              <p className="text-gray-800 dark:text-white font-semibold">
+                email: {contest?.winnerDetails?.email}
+              </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Congratulations to the winner!
               </p>

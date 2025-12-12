@@ -24,6 +24,7 @@ import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import Leaderboard from "../Pages/Dashboard/Leaderboard";
 import AboutUs from "../Pages/AboutUs";
 import Guidelines from "../Pages/Guidelines";
+import PageNotFound from "../Pages/PageNotFound";
 
 export const router = createBrowserRouter([
     {
@@ -119,5 +120,9 @@ export const router = createBrowserRouter([
                 element: <PrivetRoutes><Leaderboard/></PrivetRoutes>
             },
         ]
+    },
+    {
+        path: '*',
+        Component: PageNotFound,
     }
 ])
