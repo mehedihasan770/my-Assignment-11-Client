@@ -4,8 +4,8 @@ const Guidelines = () => {
   return (
     <div className="dark:text-white text-gray-800 min-h-screen mt-5 mb-5 space-y-5">
       <section className="py-24 px-6 text-center bg-secondary dark:bg-[#261B25] rounded-2xl">
-        <h1 className="text-5xl font-bold mb-4">Contest Guidelines</h1>
-        <p className="text-xl max-w-2xl mx-auto">
+        <h1 className="text-2xl md:text-5xl font-bold mb-4">Contest Guidelines</h1>
+        <p className="md:text-xl max-w-2xl mx-auto">
           Follow these rules to ensure a fair and smooth contest experience on ContestHub.
         </p>
       </section>
@@ -13,8 +13,8 @@ const Guidelines = () => {
       <section className="mx-auto flex justify-between  rounded-2xl p-5 bg-[#fff7ed6e] dark:bg-[#261B25]">
         <div></div>
         <div>
-        <h2 className="text-3xl font-semibold mb-6">General Instructions</h2>
-        <ul className="list-disc list-inside space-y-3 text-lg">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">General Instructions</h2>
+        <ul className="list-disc list-inside space-y-3 md:text-lg">
           <li>All participants must have a registered account on ContestHub.</li>
           <li>Ensure your profile information is accurate before joining contests.</li>
           <li>Payment must be completed to register for a contest.</li>
@@ -27,8 +27,8 @@ const Guidelines = () => {
       <section className='bg-secondary dark:bg-[#261B25]  rounded-2xl p-5'>
         <div></div>
         <div>
-        <h2 className="text-3xl font-semibold mb-6">General Instructions</h2>
-        <ul className="list-disc list-inside space-y-3 text-lg">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">General Instructions</h2>
+        <ul className="list-disc list-inside space-y-3 md:text-lg">
           <li>All participants must have a registered account on ContestHub.</li>
           <li>Ensure your profile information is accurate before joining contests.</li>
           <li>Payment must be completed to register for a contest.</li>
@@ -41,8 +41,8 @@ const Guidelines = () => {
       <section className="flex justify-between  rounded-2xl p-5 bg-[#fff7ed6e] dark:bg-[#261B25]">
         <div></div>
         <div>
-        <h2 className="text-3xl font-semibold mb-6">Contest Conduct</h2>
-        <ul className="list-disc list-inside space-y-3 text-lg">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">Contest Conduct</h2>
+        <ul className="list-disc list-inside space-y-3 md:text-lg">
           <li>Maintain a respectful and professional tone while interacting with other users.</li>
           <li>Any form of cheating, manipulation, or fraudulent activity is strictly prohibited.</li>
           <li>Report any suspicious activity to the admin immediately.</li>
@@ -53,8 +53,8 @@ const Guidelines = () => {
       </section>
 
       <section className='bg-secondary dark:bg-[#261B25] rounded-2xl p-5'>
-        <h2 className="text-3xl font-semibold mb-6">Prize & Winner Rules</h2>
-        <ul className="list-disc list-inside space-y-3 text-lg">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">Prize & Winner Rules</h2>
+        <ul className="list-disc list-inside space-y-3 md:text-lg">
           <li>Winners are declared by contest creators after the contest deadline.</li>
           <li>Prize money will be awarded only to legitimate and verified accounts.</li>
           <li>Any form of fake submission or false claim will disqualify participants.</li>

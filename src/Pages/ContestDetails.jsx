@@ -136,7 +136,7 @@ const ContestDetails = () => {
               </h1>
 
               <p className="text-gray-700 dark:text-gray-300 mb-2">
-                Participants:{" "}
+                Participants:
                 <span className="font-semibold">
                   {contest.participantsCount}
                 </span>

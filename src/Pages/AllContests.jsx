@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Loader from "../Components/Loading/Loader";
 import { Link, useSearchParams } from "react-router";
-import axios from "axios";
 
 const AllContests = () => {
   const [ searchParams, setSearchParams ] = useSearchParams()
