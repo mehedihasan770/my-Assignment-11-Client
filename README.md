@@ -5,7 +5,7 @@
 ---
 
 ## 🌐 Live Site
-[Live Site Link]()
+[Live Site Link](https://contest-hub78.netlify.app/)
 
 ---
 
@@ -73,5 +73,4 @@
 ---
 
 ## 🔗 GitHub Links
-- **Client Repo**: [Link]()
-- **Server Repo**: [Link]()
+- **Server Repo**: [Link](https://github.com/mehedihasan770/my-Assignment-11-Server.git)
