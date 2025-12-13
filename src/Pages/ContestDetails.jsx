@@ -1,18 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Loader from "../Components/Loading/Loader";
 import { useAuth } from "../Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import useDashboardRole from "../Hooks/useDashboardRole";
+import toast from "react-hot-toast";
 
 const ContestDetails = () => {
+  const { roleData, roleLoading } = useDashboardRole()
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [timeLeft, setTimeLeft] = useState({});
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const { data: contest = {}, isLoading , refetch} = useQuery({
+  const modalRef = useRef(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const {
+    data: contest = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["contestsTask", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/contests/${id}/task`);
@@ -29,7 +42,7 @@ const ContestDetails = () => {
       return res.data;
     },
   });
-  console.log(paid);
+  
   useEffect(() => {
     setTimeout(() => {
       setTimeLeft(null);
@@ -75,10 +88,10 @@ const ContestDetails = () => {
       },
     };
     const res = await axiosSecure.post(`/create-checkout-session`, paymentInfo);
-    window.location.href = res.data.url;
+    window.location.href = res?.data?.url;
   };
 
-  const handleTaskSubmit =async (data) => {
+  const handleTaskSubmit = async (data) => {
     const task = {
       id,
       contestName: contest.name,
@@ -90,18 +103,19 @@ const ContestDetails = () => {
       },
       submittedAt: new Date(),
       task: data,
-    }
-    const res = await axiosSecure.post(`/contest/${id}/task`, task)
-    console.log(res)
+    };
+    await axiosSecure.post(`/contest/${id}/task`, task);
+    toast.success('Task Submit Successful')
+    modalRef.current?.close()
     reset();
     refetch();
   };
 
-  if (!contest || isLoading || loading) return <Loader />;
+  if (!contest || isLoading || loading || roleLoading) return <Loader />;
 
   return (
     <div className="mt-5 mb-5">
-      <div className="h-fit p-3 md:p-6 lg:p-10 bg-secondary dark:bg-[#261B25] rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700">
+      <div className="h-fit p-3 md:p-6 lg:p-10   dark:bg-[#261B25]  bg-secondary rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700">
         {contest.winnerDetails && contest.winnerDetails.name && (
           <div className="flex items-center mb-6 bg-green-100 dark:bg-green-800 p-3 rounded-lg">
             <img
@@ -126,36 +140,36 @@ const ContestDetails = () => {
         <div className="flex flex-col md:flex-row gap-6">
           <div className="md:w-1/2">
             <img
-              src={contest.image}
-              alt={contest.name}
+              src={contest?.image}
+              alt={contest?.name}
               className="w-full object-cover rounded-xl"
             />
           </div>
 
           <div className="md:w-1/2 flex flex-col justify-between">
-            <div className="bg-white p-2 rounded-2xl dark:bg-[#261B25]">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                {contest.name}
+            <div className=" p-2 rounded-2xl dark:bg-[#261B25]  bg-secondary">
+              <h1 className="text-3xl font-bold mb-4">
+                {contest?.name}
               </h1>
 
-              <p className="text-gray-700 dark:text-gray-300 mb-2">
+              <p className="text-gray-500 mb-2">
                 Participants:
                 <span className="font-semibold">
-                  {contest.participantsCount}
+                  {contest?.participantsCount}
                 </span>
               </p>
 
-              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
-                Prize Money: ${contest.prizeMoney}
+              <p className="text-lg font-semibold text-gray-500 mb-4">
+                Prize Money: ${contest?.prizeMoney}
               </p>
 
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {contest.description}
+              <p className="text-gray-500 mb-4">
+                {contest?.description}
               </p>
 
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-500 mb-4">
                 <span className="font-semibold">Task:</span>{" "}
-                {contest.taskInstruction}
+                {contest?.taskInstruction}
               </p>
 
               <div className="flex gap-3 flex-wrap mb-6">
@@ -196,18 +210,20 @@ const ContestDetails = () => {
                 )}
               </div>
               <label
-                htmlFor={paid?._id && timeLeft && 'my_modal_6'}
                 onClick={() => {
                   if (!paid?._id && timeLeft) {
                     handleContestData();
                   }
+                  if (paid?._id && timeLeft){
+                    document.getElementById('my_modal_3').showModal()
+                  }
                 }}
                 className={`w-full py-3 rounded-xl text-white font-semibold btn transition mt-4 ${
-                  !timeLeft ? "bg-gray-500" : "bg-primary"
+                  !timeLeft || roleData?.role === 'creator' || roleData?.role === 'admin' ? "bg-gray-500" : "bg-primary"
                 }`}
-                disabled={!timeLeft}
+                disabled={!timeLeft || roleData?.role === 'creator' || roleData?.role === 'admin'}
               >
-                {!timeLeft
+                {roleData?.role === 'admin' ? 'Admin Not Allowed' : roleData?.role === 'creator' ? 'Creator Not Allowed' : !timeLeft
                   ? "Contest Ended"
                   : paid?._id
                   ? "Submit Task"
@@ -218,33 +234,26 @@ const ContestDetails = () => {
         </div>
       </div>
 
-      <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-        <div className="modal" role="dialog">
-          <div className="modal-box space-y-3">
-            
-              <form onSubmit={handleSubmit(handleTaskSubmit)} className="flex flex-col gap-3">
-                <textarea
-                  {...register('task', { required: true })}
-                  placeholder="Provide your task link or details, Do not submit incorrectly or your task will not be accepted!"
-                  className="border p-2 rounded-md w-full"
-                />
-                {errors.taskLink && <p className="text-red-500">Task link is required</p>}
+<dialog id="my_modal_3" ref={modalRef} className="modal">
+  <div className="modal-box">
+    <form method="dialog" onSubmit={handleSubmit(handleTaskSubmit)}
+            className="flex flex-col gap-3">
+            <textarea
+              {...register("task", { required: true })}
+              placeholder="Provide your task link or details, Do not submit incorrectly or your task will not be accepted!"
+              className="border p-2 rounded-md w-full"
+            />
+            {errors.task && (
+              <p className="text-red-500">Task is required</p>
+            )}
+            <button type="submit" className="btn bg-primary cursor-pointer text-white py-2 rounded-md font-semibold">
+              Submit
+            </button>
+    </form>
+    <button onClick={ () => document.getElementById('my_modal_3').close()} className="btn btn-sm btn-circle btn-ghost absolute right-1 top-0">✕</button>
+  </div>
+</dialog>
 
-                <button
-                  type="submit"
-                  className="bg-primary cursor-pointer text-white py-2 rounded-md font-semibold"
-                >
-                  Submit
-                </button>
-              </form>
-
-            <div className="modal-action">
-              <label htmlFor="my_modal_6" className="btn">
-                Close!
-              </label>
-            </div>
-          </div>
-        </div>
 
     </div>
   );

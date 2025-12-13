@@ -8,54 +8,66 @@ import Loader from "../../Components/Loading/Loader";
 import Swal from "sweetalert2";
 
 const EditContest = () => {
-    const { id } = useParams()
-    const  axiosSecure = useAxiosSecure();
-    const { register, handleSubmit } = useForm();
+  const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const { register, handleSubmit } = useForm();
 
-    const { data: contest = {}, isLoading, refetch } = useQuery({
-        queryKey: ["contestsTask", id],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/contests/${id}/task`);
-            return res.data;
-        },
-    });
+  const {
+    data: contest = {},
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["contestsTask", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/contests/${id}/task`);
+      return res.data;
+    },
+  });
 
-    const onSubmit =async (data) => {
-        const {name, contestType, image, price, prizeMoney, description, taskInstruction} = data;
-        const contestEditInfo = {
-            name,
-            contestType,
-            image,
-            price: Number(price),
-            prizeMoney: Number(prizeMoney),
-            description,
-            taskInstruction,
-        };
-        try {
-            Swal.fire({
-                title: "Are you sure?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Conform Update"
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                await axiosSecure.patch(`/contests/${id}/contest`, contestEditInfo);
-                Swal.fire({
-                    title: "Contest updated",
-                    text: "Your Contest has been updated",
-                    icon: "success"
-                });
-                    refetch()
-                }
-            });
-        } catch (err) {
-            toast.error("Error",err.data.message);
-        }
+  const onSubmit = async (data) => {
+    const {
+      name,
+      contestType,
+      image,
+      price,
+      prizeMoney,
+      description,
+      taskInstruction,
+    } = data;
+    const contestEditInfo = {
+      name,
+      contestType,
+      image,
+      price: Number(price),
+      prizeMoney: Number(prizeMoney),
+      description,
+      taskInstruction,
     };
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Conform Update",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axiosSecure.patch(`/contests/${id}/contest`, contestEditInfo);
+          Swal.fire({
+            title: "Contest updated",
+            text: "Your Contest has been updated",
+            icon: "success",
+          });
+          refetch();
+        }
+      });
+    } catch (err) {
+      toast.error("Error", err.data.message);
+    }
+  };
 
-    if(isLoading) return <Loader></Loader>
+  if (isLoading) return <Loader></Loader>;
 
   return (
     <div className="w-full px-2 md:px-6 py-8">
@@ -65,7 +77,7 @@ const EditContest = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-secondary dark:bg-[#261B25] rounded-2xl shadow-lg p-6 md:p-10 space-y-6"
+        className="  dark:bg-[#261B25]  bg-secondary rounded-2xl shadow-lg p-6 md:p-10 space-y-6"
       >
         <div className="grid md:grid-cols-2 gap-4">
           <input

@@ -1,16 +1,77 @@
-# React + Vite
+# 🏆 ContestHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**ContestHub** is a contest management platform where users can create, participate in, and manage contests. Users can join contests like design, article writing, business ideas, gaming reviews, and more.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Site
+[Live Site Link]()
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🏷 Website Features
+- Three user roles: Admin, Contest Creator, Normal User  
+- Create, edit, and delete contests (Creator)  
+- Approve or reject contests (Admin)  
+- Participate in contests with payment flow  
+- View submissions and declare winners (Creator)  
+- Dashboard: different features based on role  
+- Leaderboard: rank users based on contest wins  
+- SweetAlert/Toast for all CRUD actions
+- Countdown timer for contest deadlines  
+- Sort contests by upcoming deadlines or participation count  
+- Tabs by contest types (Image Design, Article Writing, etc.)  
+- Search contests by type or keyword  
+- Payment confirmation and participation count update 
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🗂 Website Routes/Pages
+
+### Home Page
+- Home page with banner, search bar, popular contests, winner advertisements  , and etc
+
+### All Contests
+- Shows all admin approved contests with tab filters  
+
+### Contest Details
+- Contest details page, register/payment, submission (private)  
+
+### User Dashboard
+- Role-based dashboard for users  
+  - My Participated Contests  
+  - My Winning Contests  
+  - My Profile  
+
+### Creator Dashboard
+- Dashboard for contest creators  
+  - Add Contest  
+  - My Created Contests  
+  - Submitted Tasks  
+  - Edit Contest 
+  - My Profile 
+
+### Admin Dashboard
+- Dashboard for admins  
+  - Manage Users  
+  - Manage Contests
+  - My Profile  
+
+### Login & Registration
+- Login and signup forms  
+
+### Leaderboard
+- Shows users ranked by contest wins 
+
+### 404 Not Found Page
+- Error page for wrong URLs  
+
+### Extra Pages
+- About Us – information about the company or platform  
+- Guidelines – instructions for contest participation and submission  
+
+---
+
+## 🔗 GitHub Links
+- **Client Repo**: [Link]()
+- **Server Repo**: [Link]()

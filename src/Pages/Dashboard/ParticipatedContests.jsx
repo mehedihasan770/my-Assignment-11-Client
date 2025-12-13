@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth } from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -25,7 +24,7 @@ const ParticipatedContests = () => {
         Participated Contest
       </h2>
       <div className="overflow-x-scroll">
-      <table className="min-w-full bg-white dark:bg-gray-900 text-sm sm:text-xs">
+      <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
         <thead className="bg-primary text-white">
           <tr>
             <th className="px-4 py-2 text-left">#</th>
@@ -44,7 +43,7 @@ const ParticipatedContests = () => {
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest.contest_name}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest.transactionId}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest.transactionId ? 'paid' : 'Un Paid'}</td>
-              <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest.contest_prizeMoney}</td>
+              <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">$ {contest.contest_prizeMoney}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{new Date(contest.contest_deadline).toLocaleString()}</td>
               <td className="px-4 py-2 flex gap-1 sm:gap-2">
                     <Link

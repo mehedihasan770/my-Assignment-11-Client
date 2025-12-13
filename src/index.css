@@ -1,10 +1,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
   --color-primary: #FF6D00;
   --color-secondary: #FFF7ED;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-secondary: #261B25;
 }
 
 .customBTN{

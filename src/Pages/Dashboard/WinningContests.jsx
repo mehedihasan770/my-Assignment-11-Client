@@ -26,7 +26,7 @@ const WinningContests = () => {
         Winning Contests
       </h2>
       <div className="overflow-x-scroll">
-      <table className="min-w-full bg-white dark:bg-gray-900 text-sm sm:text-xs">
+      <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
         <thead className="bg-primary text-white">
           <tr>
             <th className="px-4 py-2 text-left">#</th>
@@ -43,7 +43,7 @@ const WinningContests = () => {
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest?.name}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest?.contestType}</td>
-              <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest?.prizeMoney}</td>
+              <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">$ {contest?.prizeMoney}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-5">{new Date(contest?.winnerDetails?.declaredAt).toLocaleString()}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-5">{contest?.creator_email}</td>
             </tr>

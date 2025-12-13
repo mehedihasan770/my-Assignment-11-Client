@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { Link } from "react-router";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Guidelines = () => {
 
@@ -11,12 +14,19 @@ const Guidelines = () => {
     "Each user can participate only once per contest unless specified otherwise."
   ];
 
+  useEffect(() => {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      }, [])
+
   return (
     <section className="w-full">
        <h2 className="text-2xl md:text-3xl font-bold mt-20 mb-5 bg-primary text-center text-white border-2 border-primary py-2 rounded-2xl">Guidelines</h2>
         <div className="space-y-4">
           {guidelines.map((faq, i) => (
-            <div key={i} className="border border-gray-200 rounded-md">
+            <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" key={i} className="border border-gray-200 rounded-md">
               <button
                 className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
               >

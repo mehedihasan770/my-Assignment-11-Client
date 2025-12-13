@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 const Footer = () => {
     return (
-        <div className='mx-auto border-2 border-primary rounded-3xl p-8 shadow-md'>
+        <div className='mx-auto mt-10 border-2 border-primary rounded-3xl p-8 shadow-md'>
             <div className='flex flex-col lg:flex-row justify-between'>
                 <div>
                     <div className="flex items-center text-primary">

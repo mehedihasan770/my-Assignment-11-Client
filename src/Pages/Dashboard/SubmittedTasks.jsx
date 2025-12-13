@@ -58,7 +58,7 @@ const SubmittedTasks = () => {
           participant Contest Task
         </h2>
         <div className="overflow-x-scroll">
-          <table className="min-w-full bg-white dark:bg-gray-900 text-sm sm:text-xs">
+          <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
             <thead className="bg-primary text-white">
               <tr>
                 <th className="px-4 py-2 text-left">#</th>

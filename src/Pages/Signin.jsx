@@ -9,8 +9,8 @@ import { auth } from "../FirebaseConfig/Firebase";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Signin = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const { signInWithEP, signInWithGG, setLoading, setUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +19,7 @@ const Signin = () => {
     const { email, password } = data;
     try {
       await signInWithEP(email, password);
-      console.log('hallo')
+      console.log("hallo");
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
@@ -29,12 +29,12 @@ const Signin = () => {
       await axiosSecure.post("/users", userInfo);
       toast.success("Signed in successfully!");
       setLoading(false);
-      navigate(location?.state || '/');
+      navigate(location?.state || "/");
       reset();
     } catch (error) {
       if (error.response?.status === 409) {
         toast.success("Signed in successfully!");
-        navigate(location?.state || '/');
+        navigate(location?.state || "/");
       } else {
         toast.error(`${error.message}`);
       }
@@ -44,7 +44,7 @@ const Signin = () => {
   const handleSignInGG = async () => {
     try {
       const res = await signInWithGG();
-      setUser(res.user)
+      setUser(res.user);
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
@@ -53,25 +53,25 @@ const Signin = () => {
       };
       await axiosSecure.post("/users", userInfo);
       toast.success("Signed in with Google successfully!");
-      navigate(location?.state || '/');
+      navigate(location?.state || "/");
       setLoading(false);
     } catch (error) {
       if (error.response?.status === 409) {
         toast.success("Signed in with Google successfully!");
-        navigate(location?.state || '/');
+        navigate(location?.state || "/");
       } else {
         toast.error(`${error.message}`);
       }
       setLoading(false);
     }
   };
-    console.log(location.state)
+  console.log(location.state);
 
   return (
     <div className="min-h-screen flex justify-center items-center mt-5 mb-5">
       <form
         onSubmit={handleSubmit(handleSignIn)}
-        className="space-y-5 bg-secondary dark:bg-[#261B25] p-5 w-full max-w-sm rounded-2xl mx-auto"
+        className="space-y-5   dark:bg-[#261B25]  bg-secondary p-5 w-full max-w-sm rounded-2xl mx-auto"
       >
         <h2 className="text-2xl font-bold text-center mb-4 text-primary">
           Welcome Back

@@ -12,7 +12,7 @@ const DashboardHome = () => {
   return (
     <div className="md:p-12 mt-10">
       {roleData?.role === "user" ? (
-        <div className="bg-linear-to-br from-green-100 to-green-300 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
+        <div className="bg-linear-to-br from-green-300 to-green-500 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
           <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
             <img
               src={user?.photoURL}
@@ -49,7 +49,7 @@ const DashboardHome = () => {
           </div>
         </div>
       ) : roleData?.role === "admin" ? (
-        <div className="bg-linear-to-br from-red-100 to-red-300 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
+        <div className="bg-linear-to-br from-red-300 to-red-500 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
           <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
             <img
               src={user?.photoURL}
@@ -85,7 +85,7 @@ const DashboardHome = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-linear-to-br from-blue-100 to-blue-300 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
+        <div className="bg-linear-to-br from-blue-300 to-blue-500 py-6 md:p-6 lg:p-12 rounded-3xl shadow-2xl relative">
           <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
             <img
               src={user?.photoURL}

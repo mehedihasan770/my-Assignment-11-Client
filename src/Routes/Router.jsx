@@ -25,6 +25,7 @@ import Leaderboard from "../Pages/Dashboard/Leaderboard";
 import AboutUs from "../Pages/AboutUs";
 import Guidelines from "../Pages/Guidelines";
 import PageNotFound from "../Pages/PageNotFound";
+import PaymentSuccess from "../Pages/PaymentSuccess";
 
 export const router = createBrowserRouter([
     {
@@ -120,6 +121,10 @@ export const router = createBrowserRouter([
                 element: <PrivetRoutes><Leaderboard/></PrivetRoutes>
             },
         ]
+    },
+    {
+        path: 'payment-success',
+        Component: PaymentSuccess,
     },
     {
         path: '*',

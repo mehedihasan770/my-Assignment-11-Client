@@ -8,40 +8,51 @@ import { useAuth } from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddContest = () => {
-    const { user } = useAuth();
-    const  axiosSecure = useAxiosSecure();
-    const dashboardRole = useDashboardRole()
-    const { register, handleSubmit, reset } = useForm();
-    const [deadline, setDeadline] = useState(new Date());
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const dashboardRole = useDashboardRole();
+  const { register, handleSubmit, reset } = useForm();
+  const [deadline, setDeadline] = useState(new Date());
 
-    const onSubmit =async (data) => {
-        const {name, contestType, image, price, prizeMoney, description, taskInstruction} = data;
-        const contestInfo = {
-            name,
-            contestType,
-            image,
-            price: Number(price),
-            prizeMoney: Number(prizeMoney),
-            description,
-            taskInstruction,
-            deadline,
-            status: 'pending',
-            participantsCount : 0,
-            winnerDetails: {},
-            submissionsTask: [],
-            creator_email: user.email,
-            creator_name: user.displayName,
-            creator_img: user.photoURL,
-            created_at: new Date().toLocaleString()
-        };
-        try {
-        await axiosSecure.post(`/contests/${user?.email}/${dashboardRole?.roleData?.role}`, contestInfo);
-          toast.success("Contest added successfully!");
-          reset();
-        } catch (err) {
-            toast.error("Error: " + err.data.message);
-        }
+  const onSubmit = async (data) => {
+    const {
+      name,
+      contestType,
+      image,
+      price,
+      prizeMoney,
+      description,
+      taskInstruction,
+    } = data;
+    const contestInfo = {
+      name,
+      contestType,
+      image,
+      price: Number(price),
+      prizeMoney: Number(prizeMoney),
+      description,
+      taskInstruction,
+      deadline,
+      status: "pending",
+      participantsCount: 0,
+      winnerDetails: {},
+      submissionsTask: [],
+      creator_email: user.email,
+      creator_name: user.displayName,
+      creator_img: user.photoURL,
+      created_at: new Date().toLocaleString(),
     };
+    try {
+      await axiosSecure.post(
+        `/contests/${user?.email}/${dashboardRole?.roleData?.role}`,
+        contestInfo
+      );
+      toast.success("Contest added successfully!");
+      reset();
+    } catch (err) {
+      toast.error("Error: " + err.data.message);
+    }
+  };
 
   return (
     <div className="w-full px-2 md:px-6 py-8">
@@ -51,19 +62,19 @@ const AddContest = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-secondary dark:bg-[#261B25] rounded-2xl shadow-lg p-6 md:p-10 space-y-6"
+        className="  dark:bg-[#261B25]  bg-secondary rounded-2xl shadow-lg p-6 md:p-10 space-y-6"
       >
         <div className="grid md:grid-cols-2 gap-4">
           <input
             {...register("name")}
             placeholder="Contest Name"
             required
-            className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
+            className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
           />
           <select
             {...register("contestType")}
             required
-            className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:text-white"
+            className="w-full border border-primary rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
           >
             <option value="">Select Contest Type</option>
             <option value="Image Design">Image Design</option>
@@ -114,7 +125,9 @@ const AddContest = () => {
         />
 
         <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium dark:text-gray-200">Deadline</label>
+          <label className="text-sm font-medium dark:text-gray-200">
+            Deadline
+          </label>
           <DatePicker
             selected={deadline}
             onChange={setDeadline}

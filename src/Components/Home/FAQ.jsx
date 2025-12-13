@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const FAQ = () => {
   const faqs = [
@@ -25,13 +27,20 @@ const FAQ = () => {
     }
   };
 
+  useEffect(() => {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      }, [])
+
   return (
     <div>
     <h2 className="text-2xl md:text-3xl font-bold mt-20 mb-5 bg-primary text-center text-white border-2 border-primary py-2 rounded-2xl">Frequently Asked Questions</h2> 
       <div className="mx-auto">
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-gray-200 rounded-md">
+            <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" key={i} className="border border-gray-200 rounded-md">
               <button
                 onClick={() => handleFAQ(i)}
                 className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"

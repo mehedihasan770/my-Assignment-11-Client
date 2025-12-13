@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import Loader from "../../Components/Loading/Loader";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
@@ -10,7 +9,6 @@ import { useAuth } from "../../Hooks/useAuth";
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-
   const { data: contests = [], isLoading, refetch } = useQuery({
     queryKey: ["myCreatedContests", user?.email],
     queryFn: async () => {
@@ -18,9 +16,6 @@ const CreatedContests = () => {
       return res.data;
     },
   });
-
-
-
 
 const handleDeleteContest = async (id) => {
   Swal.fire({
@@ -47,9 +42,6 @@ const handleDeleteContest = async (id) => {
   });
 };
 
-
-
-
   if (isLoading) return <Loader />;
 
   return (
@@ -58,7 +50,7 @@ const handleDeleteContest = async (id) => {
         Created Contest
       </h2>
       <div className="overflow-x-scroll">
-      <table className="min-w-full bg-white dark:bg-gray-900 text-sm sm:text-xs">
+      <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
         <thead className="bg-primary text-white">
           <tr>
             <th className="px-4 py-2 text-left">#</th>
@@ -69,10 +61,15 @@ const handleDeleteContest = async (id) => {
             <th className="px-4 py-2 text-left">Deadline</th>
             <th className="px-4 py-2 text-left">Status</th>
             <th className="px-4 py-2 text-left">Actions</th>
+            <th className="px-4 py-2 text-left"></th>
           </tr>
         </thead>
         <tbody>
-          {contests.map((contest, index) => (
+          {contests.map((contest, index) => { 
+                const now = new Date().getTime();
+                const deadlineTime = new Date(contest.deadline).getTime();
+                const canDeadline = now > deadlineTime;
+            return (
             <tr key={contest._id} className="border-b dark:border-gray-700">
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2">{contest.name}</td>
@@ -120,14 +117,14 @@ const handleDeleteContest = async (id) => {
                 }
                 <Link
                     
-                    to={contest.status === "Reject" ? "" : `/dashboard/submitted-tasks/${contest._id}`}
-                    className={`btn font-bold rounded-2xl text-xs sm:text-sm ${contest.status === "Reject" ? 'hidden' : 'bg-primary text-white'}`}
+                    to={contest.status === "Reject" ? "" : !canDeadline ? '' : `/dashboard/submitted-tasks/${contest._id}`}
+                    className={`btn font-bold rounded-2xl text-xs sm:text-sm ${contest.status === "Reject" ? 'hidden' : !canDeadline ? 'bg-gray-500 text-white' : 'bg-primary text-white'}`}
                 >
-                    Submissions
+                    {!canDeadline ? 'Deadline Running' : 'View Submissions'}
                 </Link>
               </td>
             </tr>
-          ))}
+          )})}
         </tbody>
       </table>
       </div>
