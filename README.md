@@ -117,11 +117,35 @@ https://contest-hub78.netlify.app/
 - Shows users ranked by contest wins 
 
 ### 404 Not Found Page
-- Error page for wrong URLs  
+- Error page for wrong URLs
 
 ### Extra Pages
 - About Us – information about the company or platform  
-- Guidelines – instructions for contest participation and submission  
+- Guidelines – instructions for contest participation and submission 
+
+---
+
+## How to Run Locally
+
+<p>Follow these steps to run the project on your local machine:</p>
+
+<ol>
+  <li>Clone the repository:
+    <pre><code>git clone https://github.com/mehedihasan770/my-Assignment-11-Client.git</code></pre>
+  </li>
+  <li>Navigate to the project directory:
+    <pre><code>cd my-Assignment-11-Client</code></pre>
+  </li>
+  <li>Install dependencies:
+    <pre><code>npm install</code></pre>
+  </li>
+  <li>Add your Firebase environment configuration:
+    <pre>Set your Firebase API keys and config in the .env file</pre>
+  </li>
+  <li>Start the frontend:
+    <pre><code>npm run dev</code></pre>
+  </li>
+</ol> 
 
 ---
 
