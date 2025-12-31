@@ -51,10 +51,8 @@ https://contest-hub78.netlify.app/
 - View submissions and declare winners (Creator)  
 - Dashboard: different features based on role  
 - Leaderboard: rank users based on contest wins  
-- SweetAlert/Toast for all CRUD actions
 - Countdown timer for contest deadlines  
-- Sort contests by upcoming deadlines or participation count  
-- Tabs by contest types (Image Design, Article Writing, etc.)  
+- Sort contests by upcoming deadlines or participation count   
 - Search contests by type or keyword  
 - Payment confirmation and participation count update 
 
