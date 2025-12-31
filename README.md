@@ -38,11 +38,6 @@
 
 ---
 
-## 🌐 Live Site
-https://contest-hub78.netlify.app/
-
----
-
 ## 🏷 Website Features
 - Three user roles: Admin, Contest Creator, Normal User  
 - Create, edit, and delete contests (Creator)  
@@ -151,3 +146,4 @@ https://contest-hub78.netlify.app/
 
 ## 🔗 GitHub Links
 - **Server Repo**: https://github.com/mehedihasan770/my-Assignment-11-Server.git
+- **Live Link**: https://contest-hub78.netlify.app/
