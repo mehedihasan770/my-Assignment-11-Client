@@ -58,6 +58,27 @@ https://contest-hub78.netlify.app/
 
 ---
 
+## 🏷️ Dependencies Used
+- React  
+- React DOM  
+- React Router  
+- @tanstack/react-query  
+- Axios  
+- React Hook Form  
+- Tailwind CSS  
+- DaisyUI  
+- React Icons  
+- AOS  
+- Motion  
+- Firebase  
+- Recharts  
+- React Datepicker  
+- React Hot Toast  
+- SweetAlert2  
+- @tailwindcss/vite
+
+---
+
 ## 🗂 Website Routes/Pages
 
 ### Home Page
