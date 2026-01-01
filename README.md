@@ -1,6 +1,6 @@
 # 🏆 ContestHub
 
-**ContestHub** is a contest management platform where users can create, participate in, and manage contests. Users can join contests like design, article writing, business ideas, gaming reviews, and more.  
+**ContestHub** is a full-stack contest management platform where creators can create and manage various contests. users can book and participate in contests through secure payments. The platform includes role-based access for admins and users to manage contests. participants. and payments. Winners receive rewards based on contest results..  
 
 ---
 
