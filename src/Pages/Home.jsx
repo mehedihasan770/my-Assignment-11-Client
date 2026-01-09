@@ -4,6 +4,8 @@ import WinnerAdvertisement from '../Components/Home/WinnerAdvertisement';
 import AboutUs from '../Components/Home/AboutUs';
 import Guidelines from '../Components/Home/Guidelines';
 import FAQ from '../Components/Home/FAQ';
+import CategoriesSection from '../Components/Home/CategoriesSection';
+import HighlightsSection from '../Components/Home/HighlightsSection';
 
 const Home = () => {
     return (
@@ -13,6 +15,8 @@ const Home = () => {
             </header>
             <main>
                 <WinnerAdvertisement/>
+                <HighlightsSection/>
+                <CategoriesSection/>
                 <FAQ/>
                 <Guidelines/>
                 <AboutUs/>
