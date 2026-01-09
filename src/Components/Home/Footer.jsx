@@ -26,9 +26,9 @@ const Footer = () => {
                     <div>
                         <h1 className='font-bold'>Contact Information</h1>
                         <ul className='text-gray-400 space-y-2 mt-5'>
-                            <li><a className='hover:underline' href=""><FaPhone color='gray' className='inline-block mr-1'/>+880 1712345678</a></li>
-                            <li><a className='hover:underline' href=""><MdMarkEmailUnread className='inline-block mr-1'/>support@gmail.com</a></li>
-                            <li><a className='hover:underline' href=""><MdMarkEmailUnread className='inline-block mr-1'/>contest-hub@gmail.com</a></li>
+                            <li className='hover:underline'><FaPhone color='gray' className='inline-block mr-1'/>+880 1712345678</li>
+                            <li className='hover:underline'><MdMarkEmailUnread className='inline-block mr-1'/>support@gmail.com</li>
+                            <li className='hover:underline'><MdMarkEmailUnread className='inline-block mr-1'/>contest-hub@gmail.com</li>
                         </ul>
                     </div>
                     <div>
@@ -45,8 +45,7 @@ const Footer = () => {
                 <div className='mt-4 text-gray-400 flex justify-between lg:flex-row flex-col-reverse'>
                     <h1>© 2025 Contest Hub. All rights reserved.</h1>
                     <div>
-                        <a className='underline mr-4' href="">Privacy Policy</a>
-                        <a className='underline' href="">Terms of Service</a>
+                        <Link className='hover:underline' to={'/about-us'}>Privacy Policy</Link>
                     </div>
                 </div>
             </div>

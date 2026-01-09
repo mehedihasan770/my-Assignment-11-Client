@@ -10,7 +10,7 @@ const MainLayout = () => {
             <main className='min-h-screen max-w-11/12 md:max-w-10/12 lg:max-w-9/12 mx-auto'>
                 <Outlet/>
             </main>
-            <footer className='shadow-sm bg-secondary'><Footer></Footer></footer>
+            <footer className='shadow-sm bg-secondary pt-3'><Footer></Footer></footer>
         </div>
     );
 };

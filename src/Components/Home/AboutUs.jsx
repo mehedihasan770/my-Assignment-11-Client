@@ -1,21 +1,50 @@
 import { Link } from "react-router";
+import { FaRocket } from "react-icons/fa";
+import Title from "../Title/Title";
 
 const AboutUs = () => {
   return (
-    <section className="w-full">
-      <h2 className="text-2xl md:text-3xl font-bold mt-20 mb-5 bg-primary text-center text-white border-2 border-primary py-2 rounded-2xl">About Us</h2>
-      <div className="max-w-5xl mx-auto text-justify">
-        <p className="text-gray-500 text-lg mb-6">
-         Welcome to our website! We are passionate about delivering high-quality services and solutions to our users. Our goal is to provide a seamless experience with innovative ideas and user-friendly design.
-        </p>
-        <p className="text-gray-500 text-lg mb-6">
-          Our team consists of skilled developers, designers, and content creators who work together to bring the best results for our clients. We value transparency, creativity, and continuous improvement in everything we do.
-        </p>
-        <p className="text-gray-500 text-lg">
-          Whether you are here to explore our services or participate in our contests, we strive to make your experience smooth and enjoyable. Thank you for visiting!
-        </p>
+    <section className="py-10 px-4">
+      <div>
+        {/* Simple Header */}
+        <div className="text-center mb-12">
+          <Title>About Us</Title>
+          <p className="text-gray-600 dark:text-gray-300">
+            Empowering creativity through contests
+          </p>
+        </div>
+
+        {/* Simple Content */}
+        <div className="mb-8">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+              <FaRocket className="text-3xl text-primary" />
+            </div>
+          </div>
+          
+          <div className="space-y-4 text-center">
+            <p className="text-gray-700 dark:text-gray-300">
+              ContestHub connects talented creators with exciting competitions. 
+              We provide a platform for innovation, recognition, and rewards.
+            </p>
+            
+            <p className="text-gray-700 dark:text-gray-300">
+              Our mission is to build a fair and inspiring community where 
+              every participant gets the opportunity to showcase their skills.
+            </p>
+          </div>
+        </div>
+
+        {/* Simple Button */}
+        <div className="text-center">
+          <Link 
+            to={'/about-us'} 
+            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+          >
+            Learn More
+          </Link>
+        </div>
       </div>
-      <Link to={'/about-us'} className='btn bg-primary text-white font-bold rounded-2xl mt-5'>More About</Link>
     </section>
   );
 };

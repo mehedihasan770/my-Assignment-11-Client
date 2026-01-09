@@ -15,7 +15,7 @@ const HighlightsSection = () => {
           <Title>Why Choose Us</Title>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 mb-12">
           <div className="bg-secondary dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
             <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
               <FaTrophy className="text-3xl text-primary" />

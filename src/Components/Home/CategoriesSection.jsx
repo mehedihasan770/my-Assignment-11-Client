@@ -17,7 +17,7 @@ const CategoriesSection = () => {
         <div className="text-center mb-12">
           <Title>Browse Categories</Title>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
           <Link
             to="/all-contests"
             className="group block"

@@ -372,10 +372,10 @@ const Banner = () => {
         <div className="text-center mt-10">
           <Link
             to={"/all-contests"}
-            className="inline-flex items-center justify-center bg-gray-800 hover:bg-black dark:bg-gray-700 dark:hover:bg-gray-800 text-white font-bold px-8 py-3 rounded-full transition-all duration-300"
+            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
           >
             View All Contests
-            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="ml-2 w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </Link>
