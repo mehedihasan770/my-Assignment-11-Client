@@ -1,11 +1,40 @@
 # 🏆 ContestHub
 
-**ContestHub** is a contest management platform where users can create, participate in, and manage contests. Users can join contests like design, article writing, business ideas, gaming reviews, and more.  
+**ContestHub** is a full-stack contest management platform where creators can create and manage various contests. users can book and participate in contests through secure payments. The platform includes role-based access for admins and users to manage contests. participants. and payments. Winners receive rewards based on contest results..  
 
 ---
 
-## 🌐 Live Site
-[Live Site Link]()
+## Main Technology
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=react" height="40" /><br>
+      React
+    </td>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=tailwind" height="40" /><br>
+      Tailwind
+    </td>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=nodejs" height="40" /><br>
+      Node.js
+    </td>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=express" height="40" /><br>
+      Express
+    </td>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=mongodb" height="40" /><br>
+      MongoDB
+    </td>
+    <td align="center">
+      <img src="https://skillicons.dev/icons?i=firebase" height="40" /><br>
+      Firebase
+    </td>
+  </tr>
+</table>
+
 
 ---
 
@@ -17,12 +46,31 @@
 - View submissions and declare winners (Creator)  
 - Dashboard: different features based on role  
 - Leaderboard: rank users based on contest wins  
-- SweetAlert/Toast for all CRUD actions
 - Countdown timer for contest deadlines  
-- Sort contests by upcoming deadlines or participation count  
-- Tabs by contest types (Image Design, Article Writing, etc.)  
+- Sort contests by upcoming deadlines or participation count   
 - Search contests by type or keyword  
 - Payment confirmation and participation count update 
+
+---
+
+## 🏷️ Dependencies Used
+- React  
+- React DOM  
+- React Router  
+- @tanstack/react-query  
+- Axios  
+- React Hook Form  
+- Tailwind CSS  
+- DaisyUI  
+- React Icons  
+- AOS  
+- Motion  
+- Firebase  
+- Recharts  
+- React Datepicker  
+- React Hot Toast  
+- SweetAlert2  
+- @tailwindcss/vite
 
 ---
 
@@ -64,14 +112,38 @@
 - Shows users ranked by contest wins 
 
 ### 404 Not Found Page
-- Error page for wrong URLs  
+- Error page for wrong URLs
 
 ### Extra Pages
 - About Us – information about the company or platform  
-- Guidelines – instructions for contest participation and submission  
+- Guidelines – instructions for contest participation and submission 
+
+---
+
+## How to Run Locally
+
+<p>Follow these steps to run the project on your local machine:</p>
+
+<ol>
+  <li>Clone the repository:
+    <pre><code>git clone https://github.com/mehedihasan770/my-Assignment-11-Client.git</code></pre>
+  </li>
+  <li>Navigate to the project directory:
+    <pre><code>cd my-Assignment-11-Client</code></pre>
+  </li>
+  <li>Install dependencies:
+    <pre><code>npm install</code></pre>
+  </li>
+  <li>Add your Firebase environment configuration:
+    <pre>Set your Firebase API keys and config in the .env file</pre>
+  </li>
+  <li>Start the frontend:
+    <pre><code>npm run dev</code></pre>
+  </li>
+</ol> 
 
 ---
 
 ## 🔗 GitHub Links
-- **Client Repo**: [Link]()
-- **Server Repo**: [Link]()
+- **Server Repo**: https://github.com/mehedihasan770/my-Assignment-11-Server.git
+- **Live Link**: https://contest-hub78.netlify.app/
