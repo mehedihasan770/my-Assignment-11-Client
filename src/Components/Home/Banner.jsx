@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Title from "../Title/Title";
 import ContestGridSkeleton from "../Skeleton/ContestGridSkeleton";
+import { FaDollarSign, FaUsers } from "react-icons/fa";
 
 const slides = [
   {
@@ -306,51 +307,64 @@ const Banner = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {(contestType && !isLoading ? contests : top6Contests || []).map((contest) => (
               <div
-                data-aos="fade-up"
-                key={contest._id}
-                className="group bg-secondary rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={contest.image}
-                    alt={contest.name}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 text-xs font-bold bg-primary text-white rounded-full">
-                      {contest.contestType}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-3">
-                    {contest.name}
-                  </h3>
-
-                  <p className="text-gray-500 text-sm mb-4 line-clamp-2">
-                    {contest.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-1">
-                      <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                      </svg>
-                      <span className="text-sm font-medium">
-                        {contest.participantsCount} Participants
-                      </span>
-                    </div>
-                  </div>
-
-                  <Link
-                    to={`/contest-details/${contest._id}`}
-                    className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-lg transition-all duration-300"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
+                              data-aos="fade-up"
+                              key={contest._id}
+                              className="group bg-secondary dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
+                            >
+                              <div className="relative overflow-hidden">
+                                <img
+                                  src={contest.image}
+                                  alt={contest.name}
+                                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <div className="absolute top-4 right-4">
+                                  <span className="px-3 py-1 text-xs font-bold bg-primary text-white rounded-full shadow">
+                                    {contest.contestType}
+                                  </span>
+                                </div>
+                                {(contest.prizeMoney || contest.prize) && (
+                                  <div className="absolute bottom-4 left-4">
+                                    <span className="px-3 py-1 text-xs font-bold bg-linear-to-r from-green-500 to-emerald-600 text-white rounded-full shadow">
+                                      ${contest.prizeMoney || contest.prize}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+              
+                              <div className="p-5">
+                                <h3 className="text-lg font-bold text-primary mb-2 line-clamp-1">
+                                  {contest.name}
+                                </h3>
+              
+                                <p className="text-gray-500 text-sm mb-4 line-clamp-2">
+                                  {contest.description}
+                                </p>
+                                
+                                <div className="flex items-center justify-between mb-4">
+                                  <div className="flex items-center space-x-1">
+                                    <FaUsers className="w-4 h-4 text-primary" />
+                                    <span className="text-sm font-medium ">
+                                      {contest.participantsCount || 0} Participants
+                                    </span>
+                                  </div>
+                                  {contest.entryFee && (
+                                    <div className="flex items-center space-x-1">
+                                      <FaDollarSign className="w-3 h-3 text-green-500" />
+                                      <span className="text-sm font-medium text-green-600 dark:text-green-400">
+                                        ${contest.entryFee}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+              
+                                <Link
+                                  to={`/contest-details/${contest._id}`}
+                                  className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg"
+                                >
+                                  View Details
+                                </Link>
+                              </div>
+                            </div>
             ))}
           </div>
         )}
