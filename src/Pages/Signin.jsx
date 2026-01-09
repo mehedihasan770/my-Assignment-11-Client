@@ -19,7 +19,6 @@ const Signin = () => {
     const { email, password } = data;
     try {
       await signInWithEP(email, password);
-      console.log("hallo");
       const user = auth.currentUser;
       const userInfo = {
         name: user.displayName,
@@ -65,7 +64,6 @@ const Signin = () => {
       setLoading(false);
     }
   };
-  console.log(location.state);
 
   return (
     <div className="min-h-screen flex justify-center items-center mt-5 mb-5">

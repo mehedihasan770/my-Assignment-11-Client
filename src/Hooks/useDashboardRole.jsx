@@ -13,8 +13,6 @@ const useDashboardRole = () => {
     },
   });
 
-  console.log(roleData, auth.currentUser)
-
   return { roleData, roleLoading };
 };
 

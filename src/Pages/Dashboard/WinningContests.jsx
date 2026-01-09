@@ -15,9 +15,6 @@ const WinningContests = () => {
             return res.data;
         },
     });
-
-    (WiningContests.map(con => console.log(con)))
-
     if(isLoading) return <Loader/>
 
     return (

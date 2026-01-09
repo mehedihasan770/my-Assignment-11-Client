@@ -4,9 +4,9 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import { auth } from "../FirebaseConfig/Firebase";
 import { useAuth } from "../Hooks/useAuth";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Signup = () => {
   const axiosSecure = useAxiosSecure();
@@ -29,14 +29,12 @@ const Signup = () => {
       };
       await signUpWithEP(email, password);
       await updateUserPF(name, imageURL);
-      const res = await axiosSecure.post("/users", userInfo);
-      console.log(res.data);
+      await axiosSecure.post("/users", userInfo);
       toast.success("Signup successful!");
       navigate("/");
       setLoading(false);
       reset();
     } catch (error) {
-      console.error(error);
       toast.error(`Signup failed: ${error.message}`);
       setLoading(false);
     }

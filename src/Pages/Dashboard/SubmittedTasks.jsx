@@ -17,8 +17,6 @@ const SubmittedTasks = () => {
         },
     });
 
-    console.log(tasks.submissionsTask)
-
     const handleViewTask = (task ) => {
         const tasks = {task}
         setModalData(tasks)
@@ -30,7 +28,6 @@ const SubmittedTasks = () => {
         name: name,
         email: email,
       }
-      console.log(winnerData)
         Swal.fire({
           title: "Are you sure?",
           icon: "warning",

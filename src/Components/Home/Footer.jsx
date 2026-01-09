@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 const Footer = () => {
     return (
-        <div className='mx-auto mt-10 border-2 border-primary rounded-3xl p-8 shadow-md'>
+        <div className='max-w-11/12 md:max-w-10/12 lg:max-w-9/12 mx-auto mt-10 border-2 border-primary rounded-3xl p-8 shadow-md'>
             <div className='flex flex-col lg:flex-row justify-between'>
                 <div>
                     <div className="flex items-center text-primary">
@@ -22,7 +22,7 @@ const Footer = () => {
                         <Link to={'https://github.com/'} className='text-gray-600'><FaGithub size={25}/></Link>
                     </div>
                 </div>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-15 mt-15 lg:mt-0'>
+                <div className='flex flex-col lg:flex-row justify-between gap-5'>
                     <div>
                         <h1 className='font-bold'>Contact Information</h1>
                         <ul className='text-gray-400 space-y-2 mt-5'>

@@ -23,17 +23,17 @@ const WinnerAdvertisement = () => {
       });
     }, [])
 
-  if (isLoading) return <Loader />;
   return (
     <div>
       <h2 className="text-2xl md:text-3xl font-bold mt-20 mb-5 bg-primary text-white text-center border-2 border-primary py-2 rounded-2xl">
         🎉 Recent Contest Winner!
       </h2>
+      {isLoading ? <Loader /> : resentWinner.length === 0 ? (<p className="text-3xl text-center font-bold text-gray-400">Pleases Reload Browser</p>) : 
       <section className=" dark:bg-[#261B25]  bg-secondary p-2 rounded-xl shadow-xl">
         <div className="space-y-2">
           {resentWinner.map((winner) => (
             <div
-              data-aos="zoom-out-up"
+              
               key={winner?._id}
               className="p-5 mx-auto flex flex-col md:flex-row border shadow-xl rounded-2xl border-gray-300 justify-between items-center"
             >
@@ -85,7 +85,7 @@ const WinnerAdvertisement = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section>}
     </div>
   );
 };

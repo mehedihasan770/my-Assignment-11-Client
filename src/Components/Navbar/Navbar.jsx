@@ -48,7 +48,6 @@ const Navbar = () => {
       await signOutUser();
       toast.success("Signed out successfully!");
     } catch (error) {
-      console.error(error);
       toast.error(`Sign out failed: ${error.message}`);
     }
   };
@@ -64,7 +63,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar ]  bg-secondary mt-3 shadow-sm rounded-2xl">
+      <div className="navbar max-w-11/12 md:max-w-10/12 lg:max-w-9/12 mx-auto">
         <div className="navbar-start">
           <div className="flex items-center text-primary">
             <FaTrophy size={30} />
