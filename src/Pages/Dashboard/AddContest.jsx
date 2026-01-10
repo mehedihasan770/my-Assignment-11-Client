@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import useDashboardRole from "../../Hooks/useDashboardRole";
 import { useAuth } from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Title from "../../Components/Title/Title";
 
 const AddContest = () => {
   const { user } = useAuth();
@@ -55,10 +56,8 @@ const AddContest = () => {
   };
 
   return (
-    <div className="w-full px-2 md:px-6 py-8">
-      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Add New Contest
-      </h2>
+    <div>
+      <Title>Add New Contest</Title>
 
       <form
         onSubmit={handleSubmit(onSubmit)}

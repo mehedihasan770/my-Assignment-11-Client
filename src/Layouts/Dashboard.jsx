@@ -17,6 +17,7 @@ import Loader from "../Components/Loading/Loader";
 import Footer from "../Components/Home/Footer";
 import toast from "react-hot-toast";
 import { useAuth } from "../Hooks/useAuth";
+import Navbar from "../Components/Navbar/Navbar";
 
 const Dashboard = () => {
   const { roleData, roleLoading } = useDashboardRole();
@@ -36,6 +37,9 @@ const Dashboard = () => {
   return (
     <>
     <div className="max-w-11/12 md:max-w-10/12 lg:max-w-9/12 mx-auto">
+      <div className="hidden">
+        <Navbar></Navbar>
+      </div>
       <nav className="bg-secondary/90 backdrop-blur-3xl sticky top-0 z-40 shadow-md rounded-b-2xl mb-5">
         <div className="px-4 py-3 flex justify-between items-center">
           <button

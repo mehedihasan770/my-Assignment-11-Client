@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useAuth } from "../../Hooks/useAuth";
+import Title from "../../Components/Title/Title";
 
 const CreatedContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -45,10 +46,8 @@ const handleDeleteContest = async (id) => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="shadow-md md:px-6 py-8 rounded-2xl">
-        <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Created Contest
-      </h2>
+    <div>
+       <Title>Created Contest</Title>
       <div className="overflow-x-scroll">
       <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
         <thead className="bg-primary text-white">
