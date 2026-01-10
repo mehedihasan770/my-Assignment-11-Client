@@ -3,6 +3,7 @@ import { useAuth } from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../Components/Loading/Loader';
+import Title from '../../Components/Title/Title';
 
 const WinningContests = () => {
     const {user} = useAuth()
@@ -18,10 +19,8 @@ const WinningContests = () => {
     if(isLoading) return <Loader/>
 
     return (
-      <div className="shadow-md md:px-6 py-8 rounded-2xl">
-      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Winning Contests
-      </h2>
+      <div>
+      <Title>Winning Contests</Title>
       <div className="overflow-x-scroll">
       <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
         <thead className="bg-primary text-white">

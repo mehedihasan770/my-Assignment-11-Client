@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 // import Loader from "../Loading/Loader";
 import { Link } from "react-router";
 import { useAuth } from "../../Hooks/useAuth";
@@ -9,6 +8,7 @@ import "aos/dist/aos.css";
 import Title from "../Title/Title";
 import ContestGridSkeleton from "../Skeleton/ContestGridSkeleton";
 import { FaDollarSign, FaUsers } from "react-icons/fa";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const slides = [
   {
@@ -309,7 +309,7 @@ const Banner = () => {
               <div
                               data-aos="fade-up"
                               key={contest._id}
-                              className="group bg-secondary dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
+                              className="flex flex-col justify-between group bg-secondary dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
                             >
                               <div className="relative overflow-hidden">
                                 <img
@@ -359,7 +359,7 @@ const Banner = () => {
               
                                 <Link
                                   to={`/contest-details/${contest._id}`}
-                                  className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg"
+                                  className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-3xl transition-all duration-300 hover:shadow-lg"
                                 >
                                   View Details
                                 </Link>
@@ -372,7 +372,7 @@ const Banner = () => {
         <div className="text-center mt-10">
           <Link
             to={"/all-contests"}
-            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-3xl hover:bg-primary-dark transition-colors"
           >
             View All Contests
             <svg className="ml-2 w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">

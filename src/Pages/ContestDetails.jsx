@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
 // import Loader from "../Components/Loading/Loader";
 import { useAuth } from "../Hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -9,6 +8,7 @@ import useDashboardRole from "../Hooks/useDashboardRole";
 import toast from "react-hot-toast";
 import { FaTrophy, FaUsers, FaLock, FaClock, FaCheckCircle, FaUpload, FaDollarSign, FaTag, FaFileAlt, FaArrowRight } from "react-icons/fa";
 import ContestDetailsSkeleton from "../Components/Skeleton/ContestDetailsSkeleton";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ContestDetails = () => {
   const { roleData, roleLoading } = useDashboardRole()
@@ -124,9 +124,9 @@ const ContestDetails = () => {
 
   return (
     <div className="min-h-screen py-8 px-4">
-      <div>
+      <div className="bg-secondary/50 shadow p-2 rounded-3xl">
         {contest.winnerDetails && contest.winnerDetails.name && (
-          <div className="mb-8 bg-secondary dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/20 dark:border-gray-700/50">
+          <div className="mb-8 bg-secondary dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 shadow border border-white/20 dark:border-gray-700/50">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="relative mr-4">

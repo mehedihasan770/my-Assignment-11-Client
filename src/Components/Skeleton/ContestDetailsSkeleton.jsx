@@ -3,8 +3,8 @@ import React from 'react';
 const ContestDetailsSkeleton = () => {
   return (
     <div className="min-h-screen py-8 px-4">
-      <div className="">
-        <div className="mb-8 bg-secondary/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/20 dark:border-gray-700/50 animate-pulse">
+      <div className="bg-secondary/50 shadow p-2 rounded-3xl">
+        <div className="mb-8 bg-secondary/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 shadow border border-white/20 dark:border-gray-700/50 animate-pulse">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
               <div className="relative mr-4">

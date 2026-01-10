@@ -7,12 +7,11 @@ import { FaChartLine } from "react-icons/fa6";
 import { BiHome } from "react-icons/bi";
 import { PiLayoutFill } from "react-icons/pi";
 import { IoMdInformationCircleOutline, IoMdMenu } from "react-icons/io";
-import toast from "react-hot-toast";
 import { useAuth } from "../../Hooks/useAuth";
 import { IoSunnySharp } from "react-icons/io5";
 
 const Navbar = () => {
-  const { user, loading, signOutUser } = useAuth();
+  const { user, loading, } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const links = (
     <>
@@ -42,15 +41,6 @@ const Navbar = () => {
       </li>
     </>
   );
-
-  const handleSignOut = async () => {
-    try {
-      await signOutUser();
-      toast.success("Signed out successfully!");
-    } catch (error) {
-      toast.error(`Sign out failed: ${error.message}`);
-    }
-  };
 
   useEffect(() => {
     const html = document.querySelector("html");
@@ -108,11 +98,6 @@ const Navbar = () => {
                       <MdDashboard /> Dashboard
                     </NavLink>
                   </li>
-                  <li>
-                    <button onClick={handleSignOut} className="navBTN">
-                      <GoSignOut /> Sign Out
-                    </button>
-                  </li>
                 </ul>
               </div>
               <div>
@@ -134,11 +119,6 @@ const Navbar = () => {
                       <NavLink to={"/dashboard"} className="navBTN">
                         <MdDashboard /> Dashboard
                       </NavLink>
-                    </li>
-                    <li>
-                      <button onClick={handleSignOut} className="navBTN">
-                        <GoSignOut /> Sign Out
-                      </button>
                     </li>
                   </ul>
                 </div>

@@ -14,7 +14,20 @@ const Signin = () => {
   const axiosSecure = useAxiosSecure();
   const { signInWithEP, signInWithGG, setLoading, setUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
+
+  const handleCredentialClick = (type) => {
+    if (type === 'user') {
+      setValue("email", "user@demo.mail");
+      setValue("password", "Mm123456@");
+      toast.success("User credentials filled!");
+    } else if (type === 'creator') {
+      setValue("email", "creator@demo.mail");
+      setValue("password", "Mm123456@");
+      toast.success("Creator credentials filled!");
+    }
+  };
+
   const handleSignIn = async (data) => {
     const { email, password } = data;
     try {
@@ -40,6 +53,7 @@ const Signin = () => {
       setLoading(false);
     }
   };
+
   const handleSignInGG = async () => {
     try {
       const res = await signInWithGG();
@@ -66,14 +80,31 @@ const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center mt-5 mb-5">
+    <div className="min-h-screen max-w-10/12 md:max-w-9/12 lg:max-w-8/12 xl:max-w-5/12 mx-auto flex justify-center items-center mt-5 mb-5">
       <form
         onSubmit={handleSubmit(handleSignIn)}
-        className="space-y-5   dark:bg-[#261B25]  bg-secondary p-5 w-full max-w-sm rounded-2xl mx-auto"
+        className="space-y-5 dark:bg-[#261B25] bg-secondary p-5 w-full rounded-2xl mx-auto"
       >
         <h2 className="text-2xl font-bold text-center mb-4 text-primary">
           Welcome Back
         </h2>
+
+        <div className="flex gap-3 mb-2">
+          <button
+            type="button"
+            onClick={() => handleCredentialClick('user')}
+            className="flex-1 bg-primary/50 cursor-pointer e py-2 px-4 rounded-lg transition duration-200"
+          >
+            User Login
+          </button>
+          <button
+            type="button"
+            onClick={() => handleCredentialClick('creator')}
+            className="flex-1 bg-primary/50 cursor-pointer py-2 px-4 rounded-lg transition duration-200"
+          >
+            Creator Login
+          </button>
+        </div>
 
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium dark:text-gray-200">
@@ -87,7 +118,7 @@ const Signin = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-1  relative">
+        <div className="flex flex-col gap-1 relative">
           <label className="text-sm font-medium dark:text-gray-200">
             Password
           </label>
@@ -128,7 +159,7 @@ const Signin = () => {
           Sign In With Google
         </button>
         <p className="text-sm dark:text-gray-300">
-          Don’t have an account?
+          Don't have an account?
           <Link
             to={"/auth/signup"}
             className="text-primary cursor-pointer hover:underline"

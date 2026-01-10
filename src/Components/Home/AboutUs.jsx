@@ -39,7 +39,7 @@ const AboutUs = () => {
         <div className="text-center">
           <Link 
             to={'/about-us'} 
-            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+            className="inline-block bg-primary text-white font-bold px-6 py-3 rounded-3xl hover:bg-primary-dark transition-colors"
           >
             Learn More
           </Link>

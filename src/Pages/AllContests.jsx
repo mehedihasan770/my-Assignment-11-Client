@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
 // import Loader from "../Components/Loading/Loader";
 import { Link } from "react-router";
 import AOS from "aos";
@@ -18,6 +17,7 @@ import {
   FaUsers
 } from "react-icons/fa";
 import Title from "../Components/Title/Title";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllContests = () => {
   const axiosSecure = useAxiosSecure();
@@ -326,7 +326,7 @@ const AllContests = () => {
               <div
                 data-aos="fade-up"
                 key={contest._id}
-                className="group bg-secondary dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
+                className="flex flex-col justify-between group bg-secondary dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -383,7 +383,7 @@ const AllContests = () => {
 
                   <Link
                     to={`/contest-details/${contest._id}`}
-                    className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg"
+                    className="block w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 rounded-3xl transition-all duration-300 hover:shadow-lg"
                   >
                     View Details
                   </Link>

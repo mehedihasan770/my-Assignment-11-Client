@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   FaTrophy, 
   FaUsers, 
@@ -6,8 +6,16 @@ import {
   FaShieldAlt,
 } from 'react-icons/fa';
 import Title from '../Title/Title';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HighlightsSection = () => {
+  useEffect(() => {
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    }, []);
   return (
     <section className='pb-10'>
       <div>
@@ -15,7 +23,7 @@ const HighlightsSection = () => {
           <Title>Why Choose Us</Title>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 mb-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
           <div className="bg-secondary dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
             <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
               <FaTrophy className="text-3xl text-primary" />
@@ -57,7 +65,7 @@ const HighlightsSection = () => {
           </div>
         </div>
 
-        <div className="bg-linear-to-r from-primary/5 via-secondary/5 to-primary/5 rounded-3xl p-8 mb-12 shadow">
+        <div className="bg-linear-to-r from-primary/5 via-secondary/5 to-primary/5 rounded-3xl p-8 mb-12 shadow" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="text-4xl text-primary font-bold mb-2">24/7</div>

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { auth } from "../FirebaseConfig/Firebase";
 import { useAuth } from "../Hooks/useAuth";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Signup = () => {
   const axiosSecure = useAxiosSecure();
@@ -65,10 +65,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center mt-5 mb-5">
+    <div className="min-h-screen max-w-10/12 md:max-w-9/12 lg:max-w-8/12 xl:max-w-5/12 mx-auto flex justify-center items-center mt-5 mb-5">
       <form
         onSubmit={handleSubmit(handleSignUp)}
-        className="space-y-5   dark:bg-[#261B25]  bg-secondary p-5 w-full max-w-sm rounded-2xl mx-auto"
+        className="space-y-5   dark:bg-[#261B25]  bg-secondary p-5 w-full rounded-2xl mx-auto"
       >
         <h2 className="text-2xl font-bold text-center text-primary mb-4">
           Create an Account
