@@ -6,6 +6,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import Title from "../../Components/Title/Title";
 
 const ManageContests = () => {
   const { user } = useAuth();
@@ -72,10 +73,8 @@ const ManageContests = () => {
   if (isLoading) return <Loader></Loader>;
 
   return (
-    <div className="shadow-md md:px-6 py-8 rounded-2xl">
-      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Manage Contests
-      </h2>
+    <div>
+      <Title>Manage Contests</Title>
       <div className="overflow-x-scroll">
         <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
           <thead className="bg-primary text-white">

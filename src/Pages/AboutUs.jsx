@@ -1,12 +1,11 @@
 import React from "react";
+import Title from "../Components/Title/Title";
 
 const AboutUs = () => {
   return (
-    <div className="dark:text-white mt-5 mb-5 rounded-2xl space-y-5">
-      <section className="relative   dark:bg-[#261B25]  bg-secondary dark:text-white py-32 px-6 text-center  rounded-2xl">
-        <h1 className="text-2xl md:text-5xl font-bold mb-4">
-          About ContestHub
-        </h1>
+    <div className="rounded-2xl pt-5 pb-10">
+      <section className="relative dark:text-white px-6 text-center  rounded-2xl">
+        <Title>About ContestHub</Title>
         <p className="md:text-xl max-w-2xl mx-auto">
           Empowering creators and participants to share their talent, compete,
           and celebrate achievements!
@@ -22,7 +21,7 @@ const AboutUs = () => {
           skills, and connect with like-minded creators globally.
         </p>
       </section>
-      <section className="py-20 px-6 max-w-6xl mx-auto bg-primary rounded-2xl">
+      <section className="py-20 px-6 bg-primary rounded-2xl">
         <h2 className="text-2xl md:text-4xl font-bold mb-12 text-center">
           How It Works
         </h2>
@@ -51,7 +50,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6 max-w-6xl mx-auto   dark:bg-[#261B25]  bg-secondary mt-2 rounded-2xl">
+      <section className="py-20 px-6 dark:bg-[#261B25]  bg-secondary mt-2 rounded-2xl">
         <h2 className="text-2xl md:text-4xl font-bold mb-12 text-center">
           Fun Facts
         </h2>

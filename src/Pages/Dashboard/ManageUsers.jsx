@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import Loader from '../../Components/Loading/Loader';
+import Title from '../../Components/Title/Title';
 
 const ManageUsers = () => {
 
@@ -47,11 +48,9 @@ const ManageUsers = () => {
   const totalPages = Math.ceil(users.length / usersPerPage);
 
   return (
-    <div className="shadow-md md:px-6 py-8 rounded-2xl">
+    <div>
 
-      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        Manage Users
-      </h2>
+    <Title>Manage Users</Title>
 
       <div className="overflow-scroll">
         <table className="min-w-full dark:bg-gray-900 text-sm sm:text-xs">
